@@ -33,9 +33,10 @@ class _LauncherState extends State<Launcher> {
 
     final items = <Widget>[
       Icon(Icons.home_outlined, size: 30,),
-      Icon(Icons.grade_outlined , size: 30, ),
-      // Icon(Icons.work_outline_outlined , size: 30,),
-      Icon(Icons.ondemand_video_outlined , size: 30,),
+      // Icon(Icons.grade_outlined , size: 30, ),
+      Icon(Icons.bar_chart_outlined , size: 30, ),
+      // Icon(Icons.ondemand_video_outlined , size: 30,),
+      Icon(Icons.run_circle_outlined , size: 30,),
       Icon(Icons.account_circle_outlined, size: 30,),
       Icon(Icons.notifications_none_outlined, size: 30,),
 

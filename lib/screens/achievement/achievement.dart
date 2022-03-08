@@ -13,7 +13,7 @@ class _AchievementState extends State<Achievement> {
     return Scaffold(
       backgroundColor: Colors.grey,
       appBar: AppBar(
-        title: Text("Home"),
+        title: Text("Your Achievement"),
         centerTitle: true,
       ),
       body: Center(child: Text('Achievement screen')),
