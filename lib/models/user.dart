@@ -3,8 +3,8 @@ class User {
   String first_name;
   String last_name;
   String role;
-  int minute_play = 0;
-  int num_workout = 0;
+  int minute_play = 100;
+  int num_workout = 5;
   String user_type = 'normal'; //either normal or pro
 
   User({
@@ -12,6 +12,6 @@ class User {
     required this.first_name,
     required this.last_name,
     required this.role,
-    // this.user_type,
+    // required this.user_type,
   });
 }

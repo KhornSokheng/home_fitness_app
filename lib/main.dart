@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home_fitness/providers/events_provider.dart';
 import 'package:home_fitness/providers/user_provider.dart';
 import 'package:home_fitness/screens/wrapper.dart';
 import 'package:provider/provider.dart';
@@ -18,6 +19,10 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (context)=> UserProvider(),
+
+        ),
+        ChangeNotifierProvider(
+          create: (context)=> EventsProvider(),
 
         )
       ],
