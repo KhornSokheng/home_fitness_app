@@ -50,14 +50,55 @@ class EventCard extends StatelessWidget {
                   )
               ),
               SizedBox(height: 10,),
-              TextButton.icon(
-                onPressed: delete,
-                icon:Icon(Icons.delete),
-                label:Text('Remove'),
+              Row(
+                children: [
+                  // TextButton.icon(
+                  //   onPressed: delete,
+                  //   icon:Icon(Icons.delete),
+                  //   label:Text('Remove'),
+                  //
+                  // ),
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
+                    ),
+                      onPressed: delete,
+                      child: Row(
+                        children: [
+                          Icon(Icons.delete),
+                          SizedBox(width: 10,),
+                          Text('Remove')
+                        ],
 
-              ),
-              SizedBox(width: 5,),
-              TextButton.icon(onPressed: markDone, icon: Icon(Icons.add), label: Text('mark done')),
+                      )
+                  ),
+                  SizedBox(width: 20,),
+                  ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
+                      ),
+                      onPressed: markDone,
+                      child: Row(
+                        children: [
+                          Icon(Icons.assignment_turned_in_outlined),
+                          SizedBox(width: 10,),
+                          Text('Done')
+                        ],
+
+                      )
+                  ),
+                  // TextButton.icon(
+                  //   // style: ButtonStyle(
+                  //   //   backgroundColor:
+                  //   // ),
+                  //     onPressed: markDone,
+                  //     icon: Icon(Icons.assignment_turned_in_outlined),
+                  //     label: Text('mark done')
+                  // ),
+                ],
+              )
+
+
 
 
             ],
