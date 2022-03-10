@@ -1,7 +1,7 @@
 class Event{
   String name = 'event1';
   DateTime date;
-  String status = 'new'; // either new or read
+  String status = 'new'; // either new or done
   // Video workout;
 
   Event({
@@ -16,7 +16,7 @@ class Event{
     status = 'new';
   }
 
-  void markRead(){
-    status = 'read';
+  void markDone(){
+    status = 'done';
   }
 }
