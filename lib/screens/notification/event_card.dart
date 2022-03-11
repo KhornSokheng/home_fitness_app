@@ -66,8 +66,8 @@ class EventCard extends StatelessWidget {
                       child: Row(
                         children: [
                           Icon(Icons.delete),
-                          SizedBox(width: 10,),
-                          Text('Remove')
+                          // SizedBox(width: 10,),
+                          // Text('Remove')
                         ],
 
                       )
@@ -81,8 +81,8 @@ class EventCard extends StatelessWidget {
                       child: Row(
                         children: [
                           Icon(Icons.assignment_turned_in_outlined),
-                          SizedBox(width: 10,),
-                          Text('Done')
+                          // SizedBox(width: 10,),
+                          // Text('Done')
                         ],
 
                       )
