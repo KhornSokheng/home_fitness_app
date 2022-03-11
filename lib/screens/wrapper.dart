@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:home_fitness/screens/home/home.dart';
+import 'package:home_fitness/screens/login/login.dart';
 import 'package:home_fitness/screens/menu/launcher.dart';
 import 'package:home_fitness/screens/notification/notification.dart';
 
@@ -25,7 +26,7 @@ class LoginOrMenu extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(builder: (BuildContext context) {
-                      return Home();
+                      return loginreg();
                     }));
               },
               child: Text('Login Test')
