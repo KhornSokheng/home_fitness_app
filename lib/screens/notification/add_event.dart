@@ -11,6 +11,8 @@ class AddEvent extends StatefulWidget {
 
 class _AddEventState extends State<AddEvent> {
 
+  DateTime date = DateTime.now();
+
   late TextEditingController eventNameController;
   @override
   void initState() {
@@ -52,18 +54,46 @@ class _AddEventState extends State<AddEvent> {
           mainAxisSize: MainAxisSize.min,
           children: [
             TextField(
+              
               decoration: InputDecoration(
-                hintText: 'Ex: Yoga'
+                contentPadding: EdgeInsets.all(10),
+                hintText: 'Ex: Yoga',
+                labelText: 'reminder name'
               ),
               autofocus: true,
               controller: eventNameController,
               onSubmitted: (_)=>submit(),
 
             ),
-            TextField(
-              autofocus: true,
+            SizedBox(height: 25,),
+            Text('$date'),
+            SizedBox(height: 10,),
+            ElevatedButton(
+                child: Text('select date'),
+                onPressed: () async {
+                  DateTime? selectedDate = await showDatePicker(
+                    initialDatePickerMode: DatePickerMode.day,
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate: date,
+                      lastDate: DateTime(2100)
+                  );
 
-            ),
+                  // if 'cancel' => null
+                  if(selectedDate == null) {
+                    setState(() {
+                      date = date.add(const Duration(days: 1));
+                    });
+                    return;
+                  }
+
+                  // if 'OK', we got a DataTime obj
+                  setState(() {
+                    date = selectedDate;
+                  });
+                },
+            )
+
           ],
         )
 
@@ -73,7 +103,7 @@ class _AddEventState extends State<AddEvent> {
   }
   void submit(){
     // print(eventNameController.text);
-    Event e = Event(name: eventNameController.text, date: DateTime.now(), status: 'new');
+    Event e = Event(name: eventNameController.text, date: date, status: 'new');
     Navigator.of(context).pop(e);
 
     // eventNameController.clear();

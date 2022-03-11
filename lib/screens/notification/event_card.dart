@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:home_fitness/models/event.dart';
 
-class EventCard extends StatelessWidget {
+class EventCard extends StatefulWidget {
   // const EventCard({Key? key}) : super(key: key);
 
   final Event event;
@@ -16,17 +16,31 @@ class EventCard extends StatelessWidget {
 
   });
 
+  @override
+  State<EventCard> createState() => _EventCardState();
+}
 
+class _EventCardState extends State<EventCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
       clipBehavior: Clip.antiAliasWithSaveLayer,
-      color: event.status == 'new'? Colors.white:Colors.lightGreen[200],
+      color: widget.event.status == 'new'? Colors.white:Colors.lightGreen[200],
       margin: EdgeInsets.fromLTRB(50, 10, 50, 10),
       child: InkWell(
         splashColor: Colors.blue.shade800,
-        onTap: () {
-          debugPrint('Card tapped.');
+        onTap: () async {
+          // future???
+          final Event? newEvent = await showDialog<Event>(
+            context: context,
+            builder: (BuildContext context) => openDialog(),
+          );
+          if (newEvent == null || newEvent.name.isEmpty || newEvent.date == null) return;
+
+          // setState(() {
+          //   // this.newEvent = newEvent;
+          //   events.add(newEvent);
+          // });
         },
         hoverColor: Colors.blue[50],
         child: Padding(
@@ -35,15 +49,16 @@ class EventCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                  event.name,
+                  widget.event.name.toUpperCase(),
                   style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
                       color: Colors.deepOrange[400]
                   )
               ),
               SizedBox(height: 10,),
               Text(
-                  event.date.toString(),
+                  widget.event.date.toString(),
                   style: TextStyle(
                       fontSize: 16,
                       color: Colors.deepOrange
@@ -62,7 +77,7 @@ class EventCard extends StatelessWidget {
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
                     ),
-                      onPressed: delete,
+                      onPressed: widget.delete,
                       child: Row(
                         children: [
                           Icon(Icons.delete),
@@ -77,7 +92,7 @@ class EventCard extends StatelessWidget {
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
                       ),
-                      onPressed: markDone,
+                      onPressed: widget.markDone,
                       child: Row(
                         children: [
                           Icon(Icons.assignment_turned_in_outlined),
@@ -107,4 +122,46 @@ class EventCard extends StatelessWidget {
       ),
     );
   }
+
+  Widget openDialog(){
+    return AlertDialog(
+      title: Text(
+        widget.event.name.toUpperCase(),
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 50,
+        ),
+
+      ),
+      elevation: 24,
+      backgroundColor: Colors.lightGreen[100],
+
+      actions: [
+        TextButton(
+            onPressed: (){
+              Navigator.of(context).pop();
+              // setState(() {
+              //   widget.event.status = 'done';
+              // });
+            },
+            child: const Text('Cancel')
+        ),
+
+      ],
+      content: Container(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                widget.event.date.toString(),
+              )
+
+
+            ],
+          )
+
+      ),
+    );
+  }
 }
+
