@@ -65,22 +65,38 @@ class _NotificationsState extends State<Notifications> {
             // children: quotes.map((quote) {
             //   return Text(quote);
             // }).toList(),
-            children: events.reversed.map((event) => Badge(
+            children: events.reversed.map((event) => Stack(
+              children: [Badge(
 
-              padding: EdgeInsets.all(10),
-              badgeColor: Colors.redAccent,
-              // shape: BadgeShape.square,
-              position: BadgePosition.topStart(),
-              showBadge: event.status=='new' ? true:false,
-              badgeContent: Text(
-                'New',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20
+                padding: EdgeInsets.all(10),
+                badgeColor: Colors.redAccent,
+                // shape: BadgeShape.square,
+                position: BadgePosition.topStart(),
+                showBadge: event.status=='new' ? true:false,
+                badgeContent: Text(
+                  'New',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20
 
+                  ),
                 ),
+                // child: EventCard(
+                //     event: event,
+                //     delete: () {
+                //       setState(() {
+                //         events.remove(event);
+                //       });
+                //     },
+                //     markDone: (){
+                //       setState(() {
+                //         event.markDone();
+                //
+                //       });
+                //     }
+                // ),
               ),
-              child: EventCard(
+              EventCard(
                   event: event,
                   delete: () {
                     setState(() {
@@ -94,6 +110,7 @@ class _NotificationsState extends State<Notifications> {
                     });
                   }
               ),
+            ]
             )).toList(),
           ),
         ),

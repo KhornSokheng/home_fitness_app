@@ -16,6 +16,8 @@ class _AddEventState extends State<AddEvent> {
 
   TimeOfDay time = TimeOfDay(hour: 17, minute: 00);
 
+  final formKey = GlobalKey<FormState>(); //key to validate form
+
 
 
 
@@ -56,75 +58,91 @@ class _AddEventState extends State<AddEvent> {
         )
       ],
       content: Container(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextField(
-              
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(10),
-                hintText: 'Ex: Yoga',
-                labelText: 'reminder name'
-              ),
-              autofocus: true,
-              controller: eventNameController,
-              onSubmitted: (_)=>submit(),
+        child: Form(
+          key:formKey,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextFormField(
+                  validator: (value){
+                    if(value != null && value.length<1){
+                      return 'Enter a reminder';
+                    }else{
+                      return null; // the form is valid
+                    }
+                  },
 
-            ),
-            SizedBox(height: 25,),
-            Text(DateFormat.yMMMEd().format(date)),
-            SizedBox(height: 10,),
-            ElevatedButton(
-                child: Text('select date'),
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.all(10),
+                    hintText: 'Ex: Yoga',
+                    labelText: 'reminder name'
+                  ),
+                  autofocus: true,
+                  controller: eventNameController,
+                  onFieldSubmitted: (_)=>submit(),
+                  // onSubmitted: (_)=>submit(),
+                  // obscureText: true,
+
+
+              ),
+
+
+              SizedBox(height: 25,),
+              Text(DateFormat.yMMMEd().format(date)),
+              SizedBox(height: 10,),
+              ElevatedButton(
+                  child: Text('select date'),
+                  onPressed: () async {
+                    DateTime? selectedDate = await showDatePicker(
+                      initialDatePickerMode: DatePickerMode.day,
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: date,
+                        lastDate: DateTime(2100)
+                    );
+
+                    // if 'cancel' => null
+                    if(selectedDate == null) {
+                      setState(() {
+                        date = date.add(const Duration(days: 1));
+                      });
+                      return;
+                    }
+
+                    // if 'OK', we got a DataTime obj
+                    setState(() {
+                      date = selectedDate;
+                    });
+                  },
+              ),
+              SizedBox(height: 25,),
+              Text('${time.hour} : ${time.minute.toString()=='0' ? '00':time.minute.toString()}'),
+              SizedBox(height: 10,),
+              ElevatedButton(
+                child: Text('select time'),
                 onPressed: () async {
-                  DateTime? selectedDate = await showDatePicker(
-                    initialDatePickerMode: DatePickerMode.day,
+                  TimeOfDay? selectedTime = await showTimePicker(
+
                       context: context,
-                      initialDate: DateTime.now(),
-                      firstDate: date,
-                      lastDate: DateTime(2100)
+                      initialTime: time,
+                      // firstDate: date,
+                      // lastDate: DateTime(2100)
                   );
 
-                  // if 'cancel' => null
-                  if(selectedDate == null) {
+
+                  if(selectedTime != null) {
                     setState(() {
-                      date = date.add(const Duration(days: 1));
+                      time = selectedTime;
                     });
                     return;
                   }
 
-                  // if 'OK', we got a DataTime obj
-                  setState(() {
-                    date = selectedDate;
-                  });
                 },
-            ),
-            SizedBox(height: 25,),
-            Text('${time.hour} : ${time.minute.toString()=='0' ? '00':time.minute.toString()}'),
-            SizedBox(height: 10,),
-            ElevatedButton(
-              child: Text('select time'),
-              onPressed: () async {
-                TimeOfDay? selectedTime = await showTimePicker(
+              ),
 
-                    context: context,
-                    initialTime: time,
-                    // firstDate: date,
-                    // lastDate: DateTime(2100)
-                );
-
-
-                if(selectedTime != null) {
-                  setState(() {
-                    time = selectedTime;
-                  });
-                  return;
-                }
-
-              },
-            ),
-
-          ],
+            ],
+          ),
         )
 
       ),
@@ -132,14 +150,19 @@ class _AddEventState extends State<AddEvent> {
     );
   }
   void submit(){
-    // print(eventNameController.text);
-    Event e = Event(
-        name: eventNameController.text,
-        date: DateTime(date.year,date.month,date.day,time.hour,time.minute),
-        status: 'new');
-    Navigator.of(context).pop(e);
 
-    // eventNameController.clear();
+    final isValidFrom = formKey.currentState!.validate();
+
+    if(isValidFrom) {
+      Event e = Event(
+          name: eventNameController.text,
+          date: DateTime(
+              date.year, date.month, date.day, time.hour, time.minute),
+          status: 'new');
+      Navigator.of(context).pop(e);
+
+      // eventNameController.clear();
+    }
 
   }
 }
