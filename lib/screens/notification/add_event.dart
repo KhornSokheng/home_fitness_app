@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:home_fitness/models/event.dart';
+import 'package:intl/intl.dart';
 
 class AddEvent extends StatefulWidget {
   const AddEvent({Key? key}) : super(key: key);
@@ -12,6 +13,11 @@ class AddEvent extends StatefulWidget {
 class _AddEventState extends State<AddEvent> {
 
   DateTime date = DateTime.now();
+
+  TimeOfDay time = TimeOfDay(hour: 17, minute: 00);
+
+
+
 
   late TextEditingController eventNameController;
   @override
@@ -66,7 +72,7 @@ class _AddEventState extends State<AddEvent> {
 
             ),
             SizedBox(height: 25,),
-            Text('$date'),
+            Text(DateFormat.yMMMEd().format(date)),
             SizedBox(height: 10,),
             ElevatedButton(
                 child: Text('select date'),
@@ -92,7 +98,31 @@ class _AddEventState extends State<AddEvent> {
                     date = selectedDate;
                   });
                 },
-            )
+            ),
+            SizedBox(height: 25,),
+            Text('${time.hour} : ${time.minute.toString()=='0' ? '00':time.minute.toString()}'),
+            SizedBox(height: 10,),
+            ElevatedButton(
+              child: Text('select time'),
+              onPressed: () async {
+                TimeOfDay? selectedTime = await showTimePicker(
+
+                    context: context,
+                    initialTime: time,
+                    // firstDate: date,
+                    // lastDate: DateTime(2100)
+                );
+
+
+                if(selectedTime != null) {
+                  setState(() {
+                    time = selectedTime;
+                  });
+                  return;
+                }
+
+              },
+            ),
 
           ],
         )
@@ -103,7 +133,10 @@ class _AddEventState extends State<AddEvent> {
   }
   void submit(){
     // print(eventNameController.text);
-    Event e = Event(name: eventNameController.text, date: date, status: 'new');
+    Event e = Event(
+        name: eventNameController.text,
+        date: DateTime(date.year,date.month,date.day,time.hour,time.minute),
+        status: 'new');
     Navigator.of(context).pop(e);
 
     // eventNameController.clear();

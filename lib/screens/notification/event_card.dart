@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:home_fitness/models/event.dart';
+import 'package:intl/intl.dart';
 
 class EventCard extends StatefulWidget {
   // const EventCard({Key? key}) : super(key: key);
@@ -57,8 +58,27 @@ class _EventCardState extends State<EventCard> {
                   )
               ),
               SizedBox(height: 10,),
+
+              Row(
+                children: [
+                  Icon(Icons.access_alarm_outlined,
+                    color: Colors.deepOrange,
+                  ),
+                  SizedBox(width: 5,),
+                  Text(
+                      DateFormat.jm() .format(widget.event.date),
+
+                      style: TextStyle(
+                          fontSize: 25,
+                          color: Colors.deepOrange
+                      )
+                  ),
+                ],
+              ),
+              SizedBox(height: 10,),
               Text(
-                  widget.event.date.toString(),
+                  DateFormat.yMMMMEEEEd().format(widget.event.date),
+
                   style: TextStyle(
                       fontSize: 16,
                       color: Colors.deepOrange
@@ -152,9 +172,31 @@ class _EventCardState extends State<EventCard> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.access_alarm_outlined,
+                    color: Colors.orange,
+                    size: 35,
+                  ),
+                  SizedBox(width: 5,),
+                  Text(
+                    DateFormat.jm().format(widget.event.date),
+                    style: TextStyle(
+                        fontSize: 35,
+                        color: Colors.orange
+                    ),
+                  ),
+                ],
+              ),
+
+              SizedBox(height: 10,),
               Text(
-                widget.event.date.toString(),
-              )
+                DateFormat.yMMMMEEEEd().format(widget.event.date),
+              ),
+
 
 
             ],
