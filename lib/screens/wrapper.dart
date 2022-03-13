@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home_fitness/screens/achievement/achievement.dart';
 import 'package:home_fitness/screens/home/home.dart';
 import 'package:home_fitness/screens/login/login.dart';
 import 'package:home_fitness/screens/menu/launcher.dart';
@@ -31,7 +32,7 @@ class LoginOrMenu extends StatelessWidget {
               },
               child: Text('Login Test')
           ),
-          SizedBox(width: 10,),
+          SizedBox(width: 100,),
           ElevatedButton(
               onPressed: () {
                 // MaterialPageRoute(builder: (BuildContext context) {
@@ -44,6 +45,20 @@ class LoginOrMenu extends StatelessWidget {
                     }));
               },
               child: Text('Go to Menu')
+          ),
+          SizedBox(width: 100,),
+          ElevatedButton(
+              onPressed: () {
+                // MaterialPageRoute(builder: (BuildContext context) {
+                //   return Launcher();
+                // });
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (BuildContext context) {
+                      return Achievement();
+                    }));
+              },
+              child: Text('Nont')
           )
         ],
       ),

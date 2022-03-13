@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home_fitness/screens/achievement/activity_card.dart';
 
 class Achievement extends StatefulWidget {
   const Achievement({Key? key}) : super(key: key);
@@ -16,7 +17,9 @@ class _AchievementState extends State<Achievement> {
         title: Text("Your Achievement"),
         centerTitle: true,
       ),
-      body: Center(child: Text('Achievement screen')),
+      body: ActivityCard(
+
+      ),
     );
   }
 }

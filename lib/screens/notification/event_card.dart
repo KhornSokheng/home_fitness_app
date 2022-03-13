@@ -25,6 +25,12 @@ class _EventCardState extends State<EventCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
+      shadowColor: Colors.orange,
+      elevation: 8,
+      shape: RoundedRectangleBorder(
+        side: BorderSide(color: Colors.white70, width: 1),
+        borderRadius: BorderRadius.circular(16),
+      ),
       clipBehavior: Clip.antiAliasWithSaveLayer,
       color: widget.event.status == 'new'? Colors.white:Colors.lightGreen[200],
       margin: EdgeInsets.fromLTRB(50, 10, 50, 10),
