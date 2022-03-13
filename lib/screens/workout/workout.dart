@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:home_fitness/models/level.dart';
+import 'package:home_fitness/screens/achievement/activity_card.dart';
+import 'package:home_fitness/models/activity.dart';
+import 'package:home_fitness/screens/workout/levelcard.dart';
 
 class Workout extends StatefulWidget {
   const Workout({Key? key}) : super(key: key);
@@ -16,7 +20,20 @@ class _WorkoutState extends State<Workout> {
         title: Text("Your Workout"),
         centerTitle: true,
       ),
-      body: Center(child: Text('Workout screen')),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(children: [
+          Flexible(
+            child: LevelCard(
+              level: Level(
+                name: 'Easy',
+                unit: '5',
+                value: 50,
+              ),
+            ),
+          ),
+        ]),
+      ),
     );
   }
 }
