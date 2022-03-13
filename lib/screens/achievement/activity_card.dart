@@ -1,8 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:home_fitness/models/activity.dart';
 
 class ActivityCard extends StatefulWidget {
-  const ActivityCard({Key? key}) : super(key: key);
+  // const ActivityCard({Key? key}) : super(key: key);
+
+  Activity activity;
+
+  ActivityCard({
+    required this.activity,
+  });
 
   @override
   _ActivityCardState createState() => _ActivityCardState();
@@ -16,10 +23,10 @@ class _ActivityCardState extends State<ActivityCard> {
         alignment: Alignment.center,
         children: [
           Ink.image(
-            image: AssetImage('assets/shoe3.png'),
+            image: AssetImage(widget.activity.image_url),
 
-            height: 500,
-            width: 500,
+            height: 400,
+            width: 400,
             fit: BoxFit.cover,
             child: InkWell(
               hoverColor: Colors.grey[100]!.withOpacity(0.2),
@@ -30,7 +37,7 @@ class _ActivityCardState extends State<ActivityCard> {
             left: 10,
             top: 10,
             child: Text(
-              'Steps',
+              widget.activity.name,
               style: TextStyle(
                 color: Colors.black54,
                 fontSize: 50,
@@ -46,7 +53,7 @@ class _ActivityCardState extends State<ActivityCard> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  '2350',
+                  '${widget.activity.value}',
                   style: TextStyle(
                     color: Colors.black54,
                     fontSize: 50,
@@ -58,7 +65,7 @@ class _ActivityCardState extends State<ActivityCard> {
                   width: 10,
                 ),
                 Text(
-                  'steps',
+                  widget.activity.unit,
                   style: TextStyle(
                     color: Colors.black54,
                     fontSize: 20,
