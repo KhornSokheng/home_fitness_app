@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 class Activity{
   String name;
-  int value;
+  String? value;
   String unit;
   String image_url;
 
