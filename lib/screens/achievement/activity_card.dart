@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:home_fitness/models/activity.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:home_fitness/screens/achievement/color_filters.dart';
 
 class ActivityCard extends StatefulWidget {
   // const ActivityCard({Key? key}) : super(key: key);
@@ -37,6 +38,8 @@ class _ActivityCardState extends State<ActivityCard> {
               aspectRatio: 4/3,
               child: Ink.image(
                 image: AssetImage(widget.activity.image_url),
+                colorFilter: widget.activity.reached ? ColorFilters.identity
+                            : ColorFilters.greyscale,
 
                 // height: 500,
                 // width: 500,

@@ -20,91 +20,133 @@ class _AchievementState extends State<Achievement> {
     User user = Provider.of<UserProvider>(context).user;
     user.generateData();  //generate some data for activities
 
+
+    List<Activity> activity_list = [
+      Activity(
+          name: 'Heart Rate',
+          unit: 'bpm',
+          value: user.heartRate.toString(),
+          image_url: 'assets/heart1.png'
+      ),
+      Activity(
+          name: 'Steps',
+          unit: 'steps',
+          value: user.step.toString(),
+          image_url: 'assets/shoe3.png'
+      ),
+      Activity(
+          name: 'Calories Burn',
+          unit: 'Kcal',
+          value: user.calories_burn.toString(),
+          image_url: 'assets/cal_burn2.png',
+          reached: false
+      ),
+      Activity(
+          name: 'Distance Walked',
+          unit: 'KM',
+          value: user.distance_walk!.toStringAsFixed(2),
+          image_url: 'assets/milestone1.png',
+          reached: false
+      ),
+      // Activity(
+      //       name: 'Distance Walked',
+      //       unit: 'KM',
+      //       value: user.distance_walk!.toStringAsFixed(2),
+      //       image_url: 'assets/walking.png'
+      //   ),
+
+    ];
+
     return Scaffold(
       backgroundColor: Colors.grey,
       appBar: AppBar(
         title: Text("Your Achievement"),
         centerTitle: true,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            margin: EdgeInsets.all(5),
-            // color: Colors.white,
-            padding: EdgeInsets.all(5),
+      body: SingleChildScrollView(
 
-            
-            child: const AutoSizeText(
-                'Daily Activities',
-              style: TextStyle(
-                color: Colors.black54,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              margin: EdgeInsets.all(5),
+              // color: Colors.white,
+              padding: EdgeInsets.all(5),
+              child: const AutoSizeText(
+                  'Daily Activities',
+                style: TextStyle(
+                  color: Colors.black54,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+
+                ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.all(8),
+              height: 300,
+              // width: 500,
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (BuildContext context, int index) {
+                  return ActivityCard(activity: activity_list[index],);
+                },
+                separatorBuilder: (BuildContext context, int index) {
+                  return SizedBox(width: 5,);
+                },
+                itemCount: activity_list.length,
 
               ),
             ),
-          ),
-          Container(
-            padding: EdgeInsets.all(8),
-            height: 300,
-            // width: 500,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-
-              children: [
-
-                ActivityCard(
-                  activity: Activity(
-                      name: 'Heart Rate',
-                      unit: 'bpm',
-                      value: user.heartRate.toString(),
-                      image_url: 'assets/heart1.png'
-                  ),
+            Container(
+              margin: EdgeInsets.all(5),
+              // color: Colors.white,
+              padding: EdgeInsets.all(5),
+              child: const AutoSizeText(
+                'Milestones',
+                style: TextStyle(
+                  color: Colors.black54,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
 
                 ),
-                ActivityCard(
-                  activity: Activity(
-                      name: 'Steps',
-                      unit: 'steps',
-                      value: user.step.toString(),
-                      image_url: 'assets/shoe3.png'
-                  ),
-
-                ),
-                ActivityCard(
-                  activity: Activity(
-                      name: 'Calories Burn',
-                      unit: 'Kcal',
-                      value: user.calories_burn.toString(),
-                      image_url: 'assets/cal_burn2.png'
-                  ),
-
-                ),
-                ActivityCard(
-                  activity: Activity(
-                      name: 'Distance Walked',
-                      unit: 'KM',
-                      value: user.distance_walk!.toStringAsFixed(2),
-                      image_url: 'assets/walking.png'
-                  ),
-
-                ),
-                ActivityCard(
-                  activity: Activity(
-                      name: 'Distance Walked',
-                      unit: 'KM',
-                      value: user.distance_walk!.toStringAsFixed(2),
-                      image_url: 'assets/walking.png'
-                  ),
-
-                ),
-
-
-              ],
+              ),
             ),
-          ),
-        ],
+            Container(
+              padding: EdgeInsets.all(8),
+              height: 300,
+              // width: 500,
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (BuildContext context, int index) {
+                  return ActivityCard(activity: activity_list[index],);
+                },
+                separatorBuilder: (BuildContext context, int index) {
+                  return SizedBox(width: 5,);
+                },
+                itemCount: activity_list.length,
+
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.all(8),
+              height: 300,
+              // width: 500,
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (BuildContext context, int index) {
+                  return ActivityCard(activity: activity_list[index],);
+                },
+                separatorBuilder: (BuildContext context, int index) {
+                  return SizedBox(width: 5,);
+                },
+                itemCount: activity_list.length,
+
+              ),
+            ),
+            
+          ],
+        ),
       ),
     );
   }
