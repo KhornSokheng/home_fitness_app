@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:home_fitness/models/activity.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class ActivityCard extends StatefulWidget {
   // const ActivityCard({Key? key}) : super(key: key);
@@ -18,66 +20,98 @@ class ActivityCard extends StatefulWidget {
 class _ActivityCardState extends State<ActivityCard> {
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Ink.image(
-            image: AssetImage(widget.activity.image_url),
+    return Flexible(
+      child: Card(
+        shadowColor: Colors.orange,
+        elevation: 8,
+        shape: RoundedRectangleBorder(
+          side: BorderSide(color: Colors.white70, width: 1),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            AspectRatio(
+              
+              aspectRatio: 4/3,
+              child: Ink.image(
+                image: AssetImage(widget.activity.image_url),
 
-            height: 400,
-            width: 400,
-            fit: BoxFit.cover,
-            child: InkWell(
-              hoverColor: Colors.grey[100]!.withOpacity(0.2),
-              onTap: () {},
-            ), // InkWell
-          ),
-          Positioned(
-            left: 10,
-            top: 10,
-            child: Text(
-              widget.activity.name,
-              style: TextStyle(
-                color: Colors.black54,
-                fontSize: 50,
-                fontWeight: FontWeight.bold,
-
+                // height: 500,
+                // width: 500,
+                // fit: BoxFit.cover,
+                fit: BoxFit.fill,
+                child: InkWell(
+                  hoverColor: Colors.grey[100]!.withOpacity(0.5),
+                  onTap: () {},
+                ), // InkWell
               ),
             ),
-          ),
-          Positioned(
+            Positioned(
+              left: 10,
+              top: 10,
+              right: 5,
+              child: AutoSizeText(
+                widget.activity.name,
+                maxLines: 1,
+                style: TextStyle(
+                  color: Colors.black54,
+                  fontSize: 45,
+                  fontWeight: FontWeight.bold,
 
-
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  '${widget.activity.value}',
-                  style: TextStyle(
-                    color: Colors.black54,
-                    fontSize: 50,
-                    fontWeight: FontWeight.bold,
-
-                  ),
                 ),
-                SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  widget.activity.unit,
-                  style: TextStyle(
-                    color: Colors.black54,
-                    fontSize: 20,
-                    // fontWeight: FontWeight.bold,
-
-                  ),
-                ),
-              ],
+              ),
             ),
-          ),
+            Positioned(
 
-        ],
+
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  AutoSizeText(
+
+                    '${widget.activity.value}',
+                    maxLines: 1,
+                    style: TextStyle(
+                      color: Colors.black54,
+                      fontSize: 50,
+                      fontWeight: FontWeight.bold,
+
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  AutoSizeText(
+                    widget.activity.unit,
+                    maxLines: 1,
+                    style: TextStyle(
+                      color: Colors.black54,
+                      fontSize: 20,
+                      // fontWeight: FontWeight.bold,
+
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            // Positioned(
+            //   // left: 10,
+            //   // top: 10,
+            //   right: 5,
+            //   bottom: 5,
+            //   child: Icon(
+            //     FontAwesomeIcons.heartbeat,
+            //     size: 170,
+            //     color: Colors.orange,
+            //
+            //   )
+            // ),
+
+          ],
+        ),
       ),
     );
   }

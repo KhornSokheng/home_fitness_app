@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:home_fitness/models/activity.dart';
 import 'package:home_fitness/models/user.dart';
@@ -25,60 +26,85 @@ class _AchievementState extends State<Achievement> {
         title: Text("Your Achievement"),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          children: [
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            margin: EdgeInsets.all(5),
+            // color: Colors.white,
+            padding: EdgeInsets.all(5),
 
-            Flexible(
-              // flex: 3,
-              child: ActivityCard(
-                activity: Activity(
-                    name: 'Heart Rate',
-                    unit: 'bpm',
-                    value: user.heartRate.toString(),
-                    image_url: 'assets/heart1.png'
-                ),
-
-              ),
-            ),
-            Flexible(
-              child: ActivityCard(
-                activity: Activity(
-                    name: 'Steps',
-                    unit: 'steps',
-                    value: user.step.toString(),
-                    image_url: 'assets/shoe3.png'
-                ),
+            
+            child: const AutoSizeText(
+                'Daily Activities',
+              style: TextStyle(
+                color: Colors.black54,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
 
               ),
             ),
-            Flexible(
-              child: ActivityCard(
-                activity: Activity(
-                    name: 'Calories Burn',
-                    unit: 'Kcal',
-                    value: user.calories_burn.toString(),
-                    image_url: 'assets/cal_burn2.png'
+          ),
+          Container(
+            padding: EdgeInsets.all(8),
+            height: 300,
+            // width: 500,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+
+              children: [
+
+                ActivityCard(
+                  activity: Activity(
+                      name: 'Heart Rate',
+                      unit: 'bpm',
+                      value: user.heartRate.toString(),
+                      image_url: 'assets/heart1.png'
+                  ),
+
+                ),
+                ActivityCard(
+                  activity: Activity(
+                      name: 'Steps',
+                      unit: 'steps',
+                      value: user.step.toString(),
+                      image_url: 'assets/shoe3.png'
+                  ),
+
+                ),
+                ActivityCard(
+                  activity: Activity(
+                      name: 'Calories Burn',
+                      unit: 'Kcal',
+                      value: user.calories_burn.toString(),
+                      image_url: 'assets/cal_burn2.png'
+                  ),
+
+                ),
+                ActivityCard(
+                  activity: Activity(
+                      name: 'Distance Walked',
+                      unit: 'KM',
+                      value: user.distance_walk!.toStringAsFixed(2),
+                      image_url: 'assets/walking.png'
+                  ),
+
+                ),
+                ActivityCard(
+                  activity: Activity(
+                      name: 'Distance Walked',
+                      unit: 'KM',
+                      value: user.distance_walk!.toStringAsFixed(2),
+                      image_url: 'assets/walking.png'
+                  ),
+
                 ),
 
-              ),
+
+              ],
             ),
-            Flexible(
-              child: ActivityCard(
-                activity: Activity(
-                    name: 'Distance Walk',
-                    unit: 'KM',
-                    value: user.distance_walk!.toStringAsFixed(2),
-                    image_url: 'assets/walking.png'
-                ),
-
-              ),
-            ),
-
-
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
