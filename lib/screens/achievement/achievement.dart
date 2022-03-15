@@ -1,9 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:home_fitness/models/activity.dart';
+import 'package:home_fitness/models/milestone.dart';
 import 'package:home_fitness/models/user.dart';
 import 'package:home_fitness/providers/user_provider.dart';
 import 'package:home_fitness/screens/achievement/activity_card.dart';
+import 'package:home_fitness/screens/achievement/milestone_card.dart';
 import 'package:provider/provider.dart';
 
 class Achievement extends StatefulWidget {
@@ -21,39 +23,42 @@ class _AchievementState extends State<Achievement> {
     user.generateData();  //generate some data for activities
 
 
-    List<Activity> activity_list = [
+    List<Activity> activityList = [
       Activity(
-          name: 'Heart Rate',
-          unit: 'bpm',
-          value: user.heartRate.toString(),
-          image_url: 'assets/heart1.png'
+          name: 'Heart Rate', unit: 'bpm',value: user.heartRate.toString(),image_url: 'assets/heart1.png'
       ),
       Activity(
-          name: 'Steps',
-          unit: 'steps',
-          value: user.step.toString(),
+          name: 'Steps',unit: 'steps',value: user.step.toString(),
           image_url: 'assets/shoe3.png'
       ),
       Activity(
-          name: 'Calories Burn',
-          unit: 'Kcal',
-          value: user.calories_burn.toString(),
+          name: 'Calories Burn',unit: 'Kcal',value: user.calories_burn.toString(),
           image_url: 'assets/cal_burn2.png',
-          reached: false
+          // reached: false
       ),
       Activity(
-          name: 'Distance Walked',
-          unit: 'KM',
-          value: user.distance_walk!.toStringAsFixed(2),
-          image_url: 'assets/milestone1.png',
-          reached: false
+          name: 'Distance Walked',unit: 'KM',value: user.distance_walk!.toStringAsFixed(2),
+          image_url: 'assets/walking.png',
+          // reached: false
       ),
-      // Activity(
-      //       name: 'Distance Walked',
-      //       unit: 'KM',
-      //       value: user.distance_walk!.toStringAsFixed(2),
-      //       image_url: 'assets/walking.png'
-      //   ),
+    ];
+
+    List<Milestone> workoutMilestoneList = [
+      Milestone(name: 'Workouts', unit: '', value: 1, image_url: 'assets/milestone1.png'),
+      Milestone(name: 'Workouts', unit: '', value: 5, image_url: 'assets/milestone1.png'),
+      Milestone(name: 'Workouts', unit: '', value: 10, image_url: 'assets/milestone1.png', ),
+      Milestone(name: 'Workouts', unit: '', value: 15, image_url: 'assets/milestone1.png',
+          reached: false),
+
+
+    ];
+
+    List<Milestone> minuteMilestoneList = [
+      Milestone(name: 'Minutes', unit: '', value: 50, image_url: 'assets/clock5.png'),
+      Milestone(name: 'Minutes', unit: '', value: 100, image_url: 'assets/clock5.png'),
+      Milestone(name: 'Minutes', unit: '', value: 150, image_url: 'assets/clock5.png', reached: false),
+      Milestone(name: 'Minutes', unit: '', value: 200, image_url: 'assets/clock5.png', reached: false),
+
 
     ];
 
@@ -89,12 +94,12 @@ class _AchievementState extends State<Achievement> {
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (BuildContext context, int index) {
-                  return ActivityCard(activity: activity_list[index],);
+                  return ActivityCard(activity: activityList[index],);
                 },
                 separatorBuilder: (BuildContext context, int index) {
                   return SizedBox(width: 5,);
                 },
-                itemCount: activity_list.length,
+                itemCount: activityList.length,
 
               ),
             ),
@@ -119,12 +124,12 @@ class _AchievementState extends State<Achievement> {
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (BuildContext context, int index) {
-                  return ActivityCard(activity: activity_list[index],);
+                  return MilestoneCard(milestone : workoutMilestoneList[index],);
                 },
                 separatorBuilder: (BuildContext context, int index) {
                   return SizedBox(width: 5,);
                 },
-                itemCount: activity_list.length,
+                itemCount: workoutMilestoneList.length,
 
               ),
             ),
@@ -135,12 +140,12 @@ class _AchievementState extends State<Achievement> {
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (BuildContext context, int index) {
-                  return ActivityCard(activity: activity_list[index],);
+                  return MilestoneCard(milestone: minuteMilestoneList[index],);
                 },
                 separatorBuilder: (BuildContext context, int index) {
                   return SizedBox(width: 5,);
                 },
-                itemCount: activity_list.length,
+                itemCount: minuteMilestoneList.length,
 
               ),
             ),
