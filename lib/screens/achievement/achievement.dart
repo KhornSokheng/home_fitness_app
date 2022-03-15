@@ -69,6 +69,7 @@ class _AchievementState extends State<Achievement> {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
+        padding: EdgeInsets.only(bottom: 52),
 
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
