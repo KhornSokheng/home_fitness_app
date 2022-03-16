@@ -16,12 +16,12 @@ class Workout extends StatefulWidget {
 class _WorkoutState extends State<Workout> {
 
   final List _elements = [
-    {'name': 'Basic Yoga', 'group': 'For You'},
-    {'name': 'Warm-Up Stretch', 'group': 'For You'},
-    {'name': '5-Minute Plank', 'group': 'For You'},
-    {'name': 'Runner Warm-Up', 'group': 'New Workouts'},
-    {'name': 'Muscle Builder', 'group': 'New Workouts'},
-    {'name': '10-Minutes Bodyweight Burn', 'group': 'Popular'},
+    {'name': 'Basic Yoga', 'group': 'For You','duration': '5','level': 'Easy'},
+    {'name': 'Warm-Up Stretch', 'group': 'For You','duration': '9','level': 'Easy'},
+    {'name': '5-Minute Plank', 'group': 'For You','duration': '5','level': 'Medium'},
+    {'name': 'Runner Warm-Up', 'group': 'New Workouts','duration': '5','level': 'Easy'},
+    {'name': 'Muscle Builder', 'group': 'New Workouts','duration': '7','level': 'Medium'},
+    {'name': '10-Minutes Bodyweight Burn', 'group': 'Popular','duration': '10','level': 'hard'},
   ];
 
 
@@ -33,7 +33,7 @@ class _WorkoutState extends State<Workout> {
     Video(title: 'Muscle Builder', level: 'Medium', type: 'New Workouts',duration: 9),
     Video(title: '10-Minutes Bodyweight Burn', level: 'Hard', type: 'Popular',duration: 6),
     Video(title: 'Abs & Core', level: 'Easy', type: 'Popular',duration: 9),
-    Video(title: 'Master Yoga', level: 'Medium', type: 'Popular',duration: 4),
+    Video(title: 'Master Yoga', level: 'hard', type: 'Popular',duration: 4),
   ];
 
   @override
@@ -69,7 +69,14 @@ class _WorkoutState extends State<Workout> {
                 contentPadding:
                 EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
                 leading: Image.asset('assets/default_thumbnail.png'),
-                title: Text(element['name']),
+                title: Text('${element['name']} (${element['level']}): ${element['duration']}mns'),
+                // title: Row(
+                //   children: [
+                //     Text(element['name']),
+                //     SizedBox(width: 5,),
+                //     Text(element['level']),
+                //   ],
+                // ),
                 trailing: Icon(Icons.arrow_forward),
               ),
             ),
