@@ -20,7 +20,7 @@ class reg extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            Form(),
+            //Form(),
           ],
         ),
       ),
