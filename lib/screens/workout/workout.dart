@@ -68,7 +68,7 @@ class _WorkoutState extends State<Workout> {
               child: ListTile(
                 contentPadding:
                 EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-                leading: Icon(Icons.account_circle),
+                leading: Image.asset('assets/default_thumbnail.png'),
                 title: Text(element['name']),
                 trailing: Icon(Icons.arrow_forward),
               ),
