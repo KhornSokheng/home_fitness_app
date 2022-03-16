@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:home_fitness/screens/achievement/achievement.dart';
+import 'package:home_fitness/screens/admin/admin_report.dart';
 import 'package:home_fitness/screens/home/home.dart';
 import 'package:home_fitness/screens/login/login.dart';
 import 'package:home_fitness/screens/menu/launcher.dart';
@@ -53,10 +54,10 @@ class LoginOrMenu extends StatelessWidget {
                 // });
                 Navigator.push(context,
                     MaterialPageRoute(builder: (BuildContext context) {
-                  return Achievement();
+                  return AdminReport();
                 }));
               },
-              child: Text('Nont'))
+              child: Text('Log in as Admin'))
         ],
       ),
     );
