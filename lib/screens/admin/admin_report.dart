@@ -8,14 +8,14 @@ import 'package:home_fitness/screens/achievement/activity_card.dart';
 import 'package:home_fitness/screens/achievement/milestone_card.dart';
 import 'package:provider/provider.dart';
 
-class Achievement extends StatefulWidget {
-  const Achievement({Key? key}) : super(key: key);
+class AdminReport extends StatefulWidget {
+  const AdminReport({Key? key}) : super(key: key);
 
   @override
-  _AchievementState createState() => _AchievementState();
+  _AdminReportState createState() => _AdminReportState();
 }
 
-class _AchievementState extends State<Achievement> {
+class _AdminReportState extends State<AdminReport> {
   @override
   Widget build(BuildContext context) {
 
@@ -25,21 +25,22 @@ class _AchievementState extends State<Achievement> {
 
     List<Activity> activityList = [
       Activity(
-          name: 'Heart Rate', unit: 'bpm',value: user.heartRate.toString(),image_url: 'assets/heart1.png'
+          name: 'Workout Videos', unit: 'videos',value: '23',
+          image_url: 'assets/admin_report.png'
       ),
       Activity(
-          name: 'Steps',unit: 'steps',value: user.step.toString(),
-          image_url: 'assets/shoe3.png'
+          name: 'Users',unit: 'users',value: '98,500',
+          image_url: 'assets/admin_report.png'
       ),
       Activity(
-          name: 'Calories Burn',unit: 'Kcal',value: user.calories_burn.toString(),
-          image_url: 'assets/cal_burn2.png',
-          // reached: false
+        name: 'Profit',unit: '\$',value: '89,099',
+        image_url: 'assets/admin_report.png',
+        // reached: false
       ),
       Activity(
-          name: 'Distance Walked',unit: 'KM',value: user.distance_walk!.toStringAsFixed(2),
-          image_url: 'assets/walking.png',
-          // reached: false
+        name: 'Expenses',unit: '\$',value: '525',
+        image_url: 'assets/admin_report.png',
+        // reached: false
       ),
     ];
 
@@ -65,7 +66,7 @@ class _AchievementState extends State<Achievement> {
     return Scaffold(
       backgroundColor: Colors.grey,
       appBar: AppBar(
-        title: Text("Your Achievement"),
+        title: Text("Admin Reports"),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -79,7 +80,7 @@ class _AchievementState extends State<Achievement> {
               // color: Colors.white,
               padding: EdgeInsets.all(5),
               child: const AutoSizeText(
-                  'Daily Activities',
+                'Reports',
                 style: TextStyle(
                   color: Colors.black54,
                   fontSize: 20,
@@ -104,53 +105,53 @@ class _AchievementState extends State<Achievement> {
 
               ),
             ),
-            Container(
-              margin: EdgeInsets.all(5),
-              // color: Colors.white,
-              padding: EdgeInsets.all(5),
-              child: const AutoSizeText(
-                'Milestones',
-                style: TextStyle(
-                  color: Colors.black54,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
+            // Container(
+            //   margin: EdgeInsets.all(5),
+            //   // color: Colors.white,
+            //   padding: EdgeInsets.all(5),
+            //   child: const AutoSizeText(
+            //     'Milestones',
+            //     style: TextStyle(
+            //       color: Colors.black54,
+            //       fontSize: 20,
+            //       fontWeight: FontWeight.bold,
+            //
+            //     ),
+            //   ),
+            // ),
+            // Container(
+            //   padding: EdgeInsets.all(8),
+            //   height: 300,
+            //   // width: 500,
+            //   child: ListView.separated(
+            //     scrollDirection: Axis.horizontal,
+            //     itemBuilder: (BuildContext context, int index) {
+            //       return MilestoneCard(milestone : workoutMilestoneList[index],);
+            //     },
+            //     separatorBuilder: (BuildContext context, int index) {
+            //       return SizedBox(width: 5,);
+            //     },
+            //     itemCount: workoutMilestoneList.length,
+            //
+            //   ),
+            // ),
+            // Container(
+            //   padding: EdgeInsets.all(8),
+            //   height: 300,
+            //   // width: 500,
+            //   child: ListView.separated(
+            //     scrollDirection: Axis.horizontal,
+            //     itemBuilder: (BuildContext context, int index) {
+            //       return MilestoneCard(milestone: minuteMilestoneList[index],);
+            //     },
+            //     separatorBuilder: (BuildContext context, int index) {
+            //       return SizedBox(width: 5,);
+            //     },
+            //     itemCount: minuteMilestoneList.length,
+            //
+            //   ),
+            // ),
 
-                ),
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.all(8),
-              height: 300,
-              // width: 500,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (BuildContext context, int index) {
-                  return MilestoneCard(milestone : workoutMilestoneList[index],);
-                },
-                separatorBuilder: (BuildContext context, int index) {
-                  return SizedBox(width: 5,);
-                },
-                itemCount: workoutMilestoneList.length,
-
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.all(8),
-              height: 300,
-              // width: 500,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (BuildContext context, int index) {
-                  return MilestoneCard(milestone: minuteMilestoneList[index],);
-                },
-                separatorBuilder: (BuildContext context, int index) {
-                  return SizedBox(width: 5,);
-                },
-                itemCount: minuteMilestoneList.length,
-
-              ),
-            ),
-            
           ],
         ),
       ),

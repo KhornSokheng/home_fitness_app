@@ -4,8 +4,8 @@ import 'package:home_fitness/models/user.dart';
 class UserProvider extends ChangeNotifier{
   User user = User(
       id: 1,
-      first_name: 'Admin',
-      last_name: 'Test',
+      first_name: 'Sok',
+      last_name: 'Sabay',
       role: 'admin',
       gender: 'Male',
       // heartRate: 110,
