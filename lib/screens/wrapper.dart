@@ -5,8 +5,6 @@ import 'package:home_fitness/screens/login/login.dart';
 import 'package:home_fitness/screens/menu/launcher.dart';
 import 'package:home_fitness/screens/notification/notification.dart';
 
-import 'login/loginn.dart';
-
 class Wrapper extends StatelessWidget {
   const Wrapper({Key? key}) : super(key: key);
 
@@ -14,7 +12,6 @@ class Wrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     // return const Launcher();
     return LoginOrMenu();
-
   }
 }
 
@@ -26,42 +23,40 @@ class LoginOrMenu extends StatelessWidget {
         children: [
           ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                    context,
+                Navigator.push(context,
                     MaterialPageRoute(builder: (BuildContext context) {
-                      return loginreg();
-                    }));
+                  return loginreg();
+                }));
               },
-              child: Text('Login Test')
+              child: Text('Login Test')),
+          SizedBox(
+            width: 100,
           ),
-          SizedBox(width: 100,),
           ElevatedButton(
               onPressed: () {
                 // MaterialPageRoute(builder: (BuildContext context) {
                 //   return Launcher();
                 // });
-                Navigator.push(
-                    context,
+                Navigator.push(context,
                     MaterialPageRoute(builder: (BuildContext context) {
-                      return Launcher();
-                    }));
+                  return Launcher();
+                }));
               },
-              child: Text('Go to Menu')
+              child: Text('Go to Menu')),
+          SizedBox(
+            width: 100,
           ),
-          SizedBox(width: 100,),
           ElevatedButton(
               onPressed: () {
                 // MaterialPageRoute(builder: (BuildContext context) {
                 //   return Launcher();
                 // });
-                Navigator.push(
-                    context,
+                Navigator.push(context,
                     MaterialPageRoute(builder: (BuildContext context) {
-                      return Achievement();
-                    }));
+                  return Achievement();
+                }));
               },
-              child: Text('Nont')
-          )
+              child: Text('Nont'))
         ],
       ),
     );
