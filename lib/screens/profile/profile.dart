@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -9,28 +10,25 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   bool showPassword = false;
+  //DateTime selectDate = DateTime.now();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-
       appBar: AppBar(
         title: Text("Profile"),
         centerTitle: true,
-        elevation: 1,
       ),
       body: Container(
-        padding: EdgeInsets.only(left: 16, top: 25, right: 16),
+        color: Color.fromARGB(255, 255, 255, 255),
+        padding: EdgeInsets.only(left: 45, top: 25, right: 45),
         child: GestureDetector(
           onTap: () {
             FocusScope.of(context).unfocus();
           },
           child: ListView(
             children: [
-              // Text(
-              //   "Profile",
-              //   style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
-              // ),
               SizedBox(height: 15),
               Center(
                 child: Stack(
@@ -52,8 +50,7 @@ class _ProfileState extends State<Profile> {
                           shape: BoxShape.circle,
                           image: DecorationImage(
                               fit: BoxFit.cover,
-                              image: NetworkImage(
-                                  "https://pbs.twimg.com/media/EQn3AR0U4AA-y7x.jpg"))),
+                              image: AssetImage('assets/ลุงไนท์.jpg'))),
                     ),
                     Positioned(
                         bottom: 0,
@@ -62,12 +59,18 @@ class _ProfileState extends State<Profile> {
                           height: 40,
                           width: 40,
                           decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                  width: 4,
-                                  color: Theme.of(context)
-                                      .scaffoldBackgroundColor),
-                              color: Colors.lightBlue),
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                                width: 4,
+                                color:
+                                    Theme.of(context).scaffoldBackgroundColor),
+                            gradient: LinearGradient(
+                              colors: [
+                                Color(0xFFB6F492),
+                                Color(0xFF338B93),
+                              ],
+                            ),
+                          ),
                           child: Icon(
                             Icons.edit,
                             color: Colors.white,
@@ -80,51 +83,53 @@ class _ProfileState extends State<Profile> {
               buildTextField("Full Name", "Orimsa", false),
               buildTextField("Email", "orimsa@gmail.com", false),
               buildTextField("Password", "******", true),
-              buildTextField("Birthday", "07/28/1952", false),
-              SizedBox(
-                height: 35,
-              ),
+              //buildTextField("Birthday", "07/28/1952", false),
+              SizedBox(height: 35),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  OutlineButton(
-                    padding: EdgeInsets.symmetric(horizontal: 50),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                    onPressed: () {},
-                    child: Text("CANCEL",
-                        style: TextStyle(
-                            fontSize: 14,
-                            letterSpacing: 2.2,
-                            color: Colors.blue)),
-                  ),
+                  // OutlineButton(
+                  //   padding: EdgeInsets.symmetric(horizontal: 50),
+                  //   shape: RoundedRectangleBorder(
+                  //       borderRadius: BorderRadius.circular(20)),
+                  //   onPressed: () {},
+                  //   child: Text("CANCEL",
+                  //       style: TextStyle(
+                  //           fontSize: 14,
+                  //           letterSpacing: 2,
+                  //           color: Colors.blue)),
+                  // ),
                   RaisedButton(
                     onPressed: () {},
-                    color: Colors.blue,
-                    padding: EdgeInsets.symmetric(horizontal: 50),
+                    color: Color.fromARGB(255, 2, 156, 9),
+                    padding: EdgeInsets.symmetric(horizontal: 40),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                     elevation: 2,
-                    child: Text(
-                      "SAVE",
-                      style: TextStyle(
-                          fontSize: 14,
-                          letterSpacing: 2.2,
-                          color: Colors.white),
+                    child: Center(
+                      child: Text(
+                        "SAVE",
+                        style: TextStyle(
+                            fontSize: 14,
+                            letterSpacing: 2,
+                            color: Colors.white),
+                      ),
                     ),
-                  )
+                  ),
                 ],
               )
             ],
           ),
         ),
       ),
-      //body: Center(child: Text('Profile screen')),
     );
   }
 
   Widget buildTextField(
-      String labelText, String placeholder, bool isPasswordTextField) {
+    String labelText,
+    String placeholder,
+    bool isPasswordTextField,
+  ) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 35.0),
       child: TextField(
@@ -140,14 +145,12 @@ class _ProfileState extends State<Profile> {
                     icon: Icon(Icons.remove_red_eye, color: Colors.grey),
                   )
                 : null,
-            contentPadding: EdgeInsets.only(bottom: 3),
+            contentPadding: EdgeInsets.only(bottom: 2),
             labelText: labelText,
             floatingLabelBehavior: FloatingLabelBehavior.always,
             hintText: placeholder,
             hintStyle: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: Colors.black)),
+                fontSize: 16, fontWeight: FontWeight.bold, color: Colors.grey)),
       ),
     );
   }
