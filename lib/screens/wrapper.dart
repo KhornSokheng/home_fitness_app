@@ -5,11 +5,6 @@ import 'package:home_fitness/screens/login/login.dart';
 import 'package:home_fitness/screens/menu/launcher.dart';
 import 'package:home_fitness/screens/notification/notification.dart';
 
-<<<<<<< HEAD
-=======
-import 'login/login.dart';
-
->>>>>>> e1fc0d281634af659e7e9813a1f671d76c7c17b1
 class Wrapper extends StatelessWidget {
   const Wrapper({Key? key}) : super(key: key);
 
