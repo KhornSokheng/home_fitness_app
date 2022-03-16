@@ -105,6 +105,20 @@ class _AdminReportState extends State<AdminReport> {
 
               ),
             ),
+            SizedBox(
+              height: 50,
+            ),
+
+            Center(
+              child: ElevatedButton(
+                  onPressed: (){},
+                  child: Text(
+                    'Add Video',
+
+                  ),
+
+              ),
+            ),
             // Container(
             //   margin: EdgeInsets.all(5),
             //   // color: Colors.white,
