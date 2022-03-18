@@ -1,3 +1,4 @@
+import 'package:badges/badges.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -38,7 +39,11 @@ class _LauncherState extends State<Launcher> {
       // Icon(Icons.ondemand_video_outlined , size: 30,),
       Icon(Icons.run_circle_outlined , size: 30,),
       Icon(Icons.account_circle_outlined, size: 30,),
-      Icon(Icons.notifications_none_outlined, size: 30,),
+      Badge(
+        badgeContent: Text('3'),
+          child: Icon(Icons.notifications_none_outlined, size: 30,)
+
+      ),
 
 
 
