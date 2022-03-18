@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home_fitness/screens/Reg/get_info.dart';
 import 'package:home_fitness/screens/login/login.dart';
 
 class reg extends StatelessWidget {
@@ -60,7 +61,7 @@ class reg extends StatelessWidget {
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
                       builder:(context){
-                        return loginreg();
+                        return GetInfo();
                       })
                   );
                 },
