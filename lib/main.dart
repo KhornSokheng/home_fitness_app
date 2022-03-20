@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:home_fitness/providers/events_provider.dart';
+import 'package:home_fitness/providers/google_sign_in.dart';
 import 'package:home_fitness/providers/user_provider.dart';
 import 'package:home_fitness/screens/wrapper.dart';
 import 'package:provider/provider.dart';
@@ -29,6 +30,10 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context)=> EventsProvider(),
+
+        ),
+        ChangeNotifierProvider(
+          create: (context)=> GoogleSignInProvider(),
 
         )
       ],

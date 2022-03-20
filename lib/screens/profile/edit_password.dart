@@ -59,8 +59,8 @@ class EditPasswordFormPageState extends State<EditPasswordFormPage> {
                             }
                             return null;
                           },
-                          decoration: const InputDecoration(
-                              labelText: 'Your password', hintText: 'Password'),
+                          decoration:
+                              const InputDecoration(labelText: 'Your password'),
                           controller: passwordController,
                         ))),
                 Padding(
