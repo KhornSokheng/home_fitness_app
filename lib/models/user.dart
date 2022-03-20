@@ -1,11 +1,14 @@
+import 'dart:convert';
 import 'dart:math';
+
+import 'package:http/http.dart' as http;
 
 class User {
   final int id;
   String first_name;
   String last_name;
   DateTime? dateOfBirth = DateTime(2000,1,1);
-  String? role = 'user'; // either user or admin???
+  String? role = 'normal_user'; // either normal_user or admin???
   int minute_play = 100;
   int num_workout = 5;
   String? user_type = 'normal'; //either normal or pro
@@ -53,5 +56,20 @@ class User {
     this.heartRate = Random().nextInt(40)+80;
     this.calories_burn = Random().nextInt(500)+1000;
     this.distance_walk = (this.step!/1300);
+  }
+
+  Future<void> getUser() async{
+    // var url = Uri.parse('https://example.com/whatsit/create');
+    // var response = await http.post(url, body: {'name': 'doodle', 'color': 'blue'});
+    // print('Response status: ${response.statusCode}');
+    // print('Response body: ${response.body}');
+
+    // http.Response response = await http.get(Uri.parse('localhost:5000/getCustomer'));
+    //
+    // Map data = jsonDecode(response.body);
+    // print(data);
+    //
+    // print('hello world');
+    // print(await http.read(Uri.parse('http://worldtimeapi.org/api/timezone/Europe/madrid')));
   }
 }

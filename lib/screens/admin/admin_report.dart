@@ -22,6 +22,10 @@ class _AdminReportState extends State<AdminReport> {
     User user = Provider.of<UserProvider>(context).user;
     user.generateData();  //generate some data for activities
 
+    print('hello heng');
+    user.getUser();
+
+
 
     List<Activity> activityList = [
       Activity(
