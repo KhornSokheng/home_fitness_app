@@ -43,6 +43,12 @@ dependencies:
   grouped_list: ^4.2.0
   http: ^0.13.4
 
+  shared_preferences: ^2.0.13
+  string_validator: ^0.3.0
+  email_validator: ^2.0.1
+  image_picker: ^0.8.4+1
+  path_provider: ^2.0.4
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
