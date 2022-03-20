@@ -15,12 +15,36 @@ class _GetInfoState extends State<GetInfo> {
       appBar: AppBar(
         title: Text('Personal Information'),
         centerTitle: true,
-
       ),
       body: Container(
-        child: Center(
-          child: Text(
-            'Tell us more about you'
+        child: Form(
+          child: SingleChildScrollView(
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text("nickname", style: TextStyle(fontSize: 20)),
+              TextFormField(),
+              SizedBox(
+                height: 15,
+              ),
+              Text("Age", style: TextStyle(fontSize: 20)),
+              TextFormField(),
+              SizedBox(
+                height: 15,
+              ),
+              Text("Weight", style: TextStyle(fontSize: 20)),
+              TextFormField(),
+              SizedBox(
+                height: 15,
+              ),
+              Text("Height", style: TextStyle(fontSize: 20)),
+              TextFormField(),
+              SizedBox(
+                child: ElevatedButton(
+                  child: Text("Next"),
+                  onPressed: () {},
+                ),
+              ),
+            ]),
           ),
         ),
       ),
