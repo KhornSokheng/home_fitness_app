@@ -14,7 +14,7 @@ class UserDataProfile {
     password: 'prayuth.air27_sogood',
     phone: '(208) 206-5039',
     aboutMeDescription:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat...',
+        'Runner, Yoga, Weight Lifter, world champion, Olympic Gold Medal ',
   );
 
   static Future init() async =>

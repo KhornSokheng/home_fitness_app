@@ -1,7 +1,9 @@
 import 'dart:async';
 
+import 'package:home_fitness/models/user.dart';
 import 'package:home_fitness/models/userprofile.dart';
 import 'package:home_fitness/models/userdataprofile.dart';
+import 'package:home_fitness/providers/user_provider.dart';
 import 'package:home_fitness/screens/profile/edit_password.dart';
 import 'package:home_fitness/widgets/display_image_widget.dart';
 
@@ -12,6 +14,7 @@ import 'package:home_fitness/screens/profile/edit_img.dart';
 import 'package:home_fitness/screens/profile/edit_phone.dart';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 //import 'package:flutter/cupertino.dart';
 
 class Profile extends StatefulWidget {
@@ -24,6 +27,7 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     final userdataprofile = UserDataProfile.myUser;
+    User user = Provider.of<UserProvider>(context).user;
 
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -44,15 +48,18 @@ class _ProfileState extends State<Profile> {
                   navigateSecondPage(EditImagePage());
                 },
                 child: DisplayImage(
-                  imagePath: userdataprofile.image,
+                  // imagePath: userdataprofile.image,
+                  imagePath: user.profile_img_url,
                   onPressed: () {},
                 )),
             buildUserInfoDisplay(
-                userdataprofile.name, 'Name', EditNameFormPage()),
+                // userdataprofile.name, '', EditNameFormPage()),
+                user.username, 'Name', EditNameFormPage()),
+            buildUserInfoDisplay(
+                user.email, 'Email', EditEmailFormPage()),
             buildUserInfoDisplay(
                 userdataprofile.phone, 'Phone', EditPhoneFormPage()),
-            buildUserInfoDisplay(
-                userdataprofile.email, 'Email', EditEmailFormPage()),
+
             buildUserInfoDisplay(
                 userdataprofile.password, 'Password', EditPasswordFormPage()),
             Expanded(

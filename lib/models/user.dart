@@ -5,8 +5,9 @@ import 'package:http/http.dart' as http;
 
 class User {
   final int id;
-  String first_name;
-  String last_name;
+  String username;
+  String email;
+  // String last_name;
   DateTime? dateOfBirth = DateTime(2000,1,1);
   String? role = 'normal_user'; // either normal_user or admin???
   int minute_play = 100;
@@ -14,18 +15,20 @@ class User {
   String? user_type = 'normal'; //either normal or pro
   double? height=173; // height in cm
   double? weight = 75; // weight in kg
-  String gender = 'Male';
+  String gender;
   int? heartRate;
   int? step;
   int? calories_burn = 1100;
   double? distance_walk; // in KM
+  String profile_img_url;
 
 
   User({
     required this.id,
-    required this.first_name,
-    required this.last_name,
-    required this.gender,
+    required this.username,
+    required this.email,
+    // required this.last_name,
+    this.gender = 'Male',
     this.role,
     this.user_type,
     this.height,
@@ -35,6 +38,8 @@ class User {
     this.heartRate = 95,
     this.step = 1980,
     this.distance_walk  = 2,
+    this.profile_img_url = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4Y2LJnaCmGkiNXrQ9BDNoWPljvdLT1308iw&usqp=CAU',
+
 
   });
 

@@ -6,6 +6,10 @@ import 'package:home_fitness/screens/home/home.dart';
 import 'package:home_fitness/screens/login/login.dart';
 import 'package:home_fitness/screens/menu/launcher.dart';
 import 'package:home_fitness/screens/notification/notification.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/user_provider.dart';
+import 'package:home_fitness/models/user.dart' as fitness_user;
 
 class Wrapper extends StatelessWidget {
   const Wrapper({Key? key}) : super(key: key);
@@ -18,7 +22,11 @@ class Wrapper extends StatelessWidget {
 }
 
 class LoginOrMenu extends StatelessWidget {
+
+
   Widget build(BuildContext context) {
+
+
     return StreamBuilder(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
@@ -26,10 +34,23 @@ class LoginOrMenu extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
           } else if (snapshot.hasData) {
-            Navigator.push(context,
-            MaterialPageRoute(builder: (BuildContext context) {
-            return Launcher();}));
-            // return Launcher();
+            final google_user = FirebaseAuth.instance.currentUser!;
+            print(google_user);
+
+            Provider.of<UserProvider>(context, listen: false).updateUser(
+              fitness_user.User(
+                id: 3,
+                username: google_user.displayName!,
+                profile_img_url: google_user.photoURL!,
+                email: google_user.email!,
+
+              )
+            );
+
+            // Navigator.push(context,
+            // MaterialPageRoute(builder: (BuildContext context) {
+            // return Launcher();}));
+            return Launcher();
             // return LoggedInWidget();
           } else if (snapshot.hasError) {
             return Center(child: Text('Something Went Wrong!'));
