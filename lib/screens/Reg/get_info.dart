@@ -17,32 +17,40 @@ class _GetInfoState extends State<GetInfo> {
         centerTitle: true,
       ),
       body: Container(
+        color: Colors.blue,
         child: Form(
           child: SingleChildScrollView(
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text("nickname", style: TextStyle(fontSize: 20)),
+              Text(
+                'Personal history',
+                style: TextStyle(fontSize: 35, fontFamily: 'BebasNeue'),
+              ),
+              Text("Nickname",
+                  style: TextStyle(fontSize: 20, fontFamily: 'BebasNeue')),
               TextFormField(),
               SizedBox(
                 height: 15,
               ),
-              Text("Age", style: TextStyle(fontSize: 20)),
+              Text("Age",
+                  style: TextStyle(fontSize: 20, fontFamily: 'BebasNeue')),
               TextFormField(),
               SizedBox(
                 height: 15,
               ),
-              Text("Weight", style: TextStyle(fontSize: 20)),
+              Text("Weight",
+                  style: TextStyle(fontSize: 20, fontFamily: 'BebasNeue')),
               TextFormField(),
               SizedBox(
                 height: 15,
               ),
-              Text("Height", style: TextStyle(fontSize: 20)),
+              Text("Height",
+                  style: TextStyle(fontSize: 20, fontFamily: 'BebasNeue')),
               TextFormField(),
-              SizedBox(
-                child: ElevatedButton(
-                  child: Text("Next"),
-                  onPressed: () {},
-                ),
+              SizedBox(),
+              Text(
+                'Choose aptitude',
+                style: TextStyle(fontSize: 35, fontFamily: 'BebasNeue'),
               ),
             ]),
           ),

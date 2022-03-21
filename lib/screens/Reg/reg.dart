@@ -10,7 +10,6 @@ class reg extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Center(
-
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -29,47 +28,39 @@ class reg extends StatelessWidget {
                 decoration: InputDecoration(
                     contentPadding: EdgeInsets.all(10),
                     hintText: 'John',
-                    labelText: 'First Name'
-                ),
+                    labelText: 'First Name'),
               ),
               TextField(
                 decoration: InputDecoration(
                     contentPadding: EdgeInsets.all(10),
                     hintText: 'Cena',
-                    labelText: 'Last Name'
-                ),
+                    labelText: 'Last Name'),
               ),
               TextField(
                 decoration: InputDecoration(
                     contentPadding: EdgeInsets.all(10),
                     hintText: 'example@gmail.com',
-                    labelText: 'Email'
-                ),
+                    labelText: 'Email'),
               ),
               TextField(
                 decoration: InputDecoration(
                     contentPadding: EdgeInsets.all(10),
                     // hintText: 'example@gmail.com',
-                    labelText: 'Password'
-                ),
+                    labelText: 'Password'),
                 obscureText: true,
               ),
               SizedBox(
                 height: 10,
               ),
               ElevatedButton(
-                onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(
-                      builder:(context){
-                        return GetInfo();
-                      })
-                  );
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return GetInfo();
+                  }));
                 },
                 child: Text(
                   'Sign Up',
-
                 ),
-
               ),
 
               //Form(),
