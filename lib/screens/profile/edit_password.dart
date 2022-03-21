@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:home_fitness/widgets/appbar_widget.dart';
 import 'package:home_fitness/models/userdataprofile.dart';
+import 'package:provider/provider.dart';
+
+import '../../models/user.dart';
+import '../../providers/user_provider.dart';
 
 class EditPasswordFormPage extends StatefulWidget {
   const EditPasswordFormPage({Key? key}) : super(key: key);
@@ -15,7 +19,7 @@ class EditPasswordFormPage extends StatefulWidget {
 class EditPasswordFormPageState extends State<EditPasswordFormPage> {
   final _formKey = GlobalKey<FormState>();
   final passwordController = TextEditingController();
-  var user = UserDataProfile.myUser;
+  // var user = UserDataProfile.myUser;
 
   @override
   void dispose() {
@@ -23,12 +27,15 @@ class EditPasswordFormPageState extends State<EditPasswordFormPage> {
     super.dispose();
   }
 
-  void updateUserValue(String password) {
-    user.password = password;
-  }
+  // void updateUserValue(String password) {
+  //   user.password = password;
+  // }
 
   @override
   Widget build(BuildContext context) {
+
+    User provider_user = Provider.of<UserProvider>(context, listen: false).user;
+
     return Scaffold(
         appBar: buildAppBar(context),
         body: Form(
@@ -40,7 +47,7 @@ class EditPasswordFormPageState extends State<EditPasswordFormPage> {
                 SizedBox(
                     width: 320,
                     child: const Text(
-                      "What's your password?",
+                      "Enter new password",
                       style:
                           TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.left,
@@ -60,7 +67,7 @@ class EditPasswordFormPageState extends State<EditPasswordFormPage> {
                             return null;
                           },
                           decoration:
-                              const InputDecoration(labelText: 'Your password'),
+                              const InputDecoration(labelText: 'New password'),
                           controller: passwordController,
                         ))),
                 Padding(
@@ -74,7 +81,8 @@ class EditPasswordFormPageState extends State<EditPasswordFormPage> {
                             onPressed: () {
                               // Validate returns true if the form is valid, or false otherwise.
                               if (_formKey.currentState!.validate()) {
-                                updateUserValue(passwordController.text);
+                                provider_user.password = passwordController.text;
+                                print(provider_user.password );
                                 Navigator.pop(context);
                               }
                             },

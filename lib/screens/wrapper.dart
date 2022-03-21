@@ -55,7 +55,7 @@ class LoginOrMenu extends StatelessWidget {
           } else if (snapshot.hasError) {
             return Center(child: Text('Something Went Wrong!'));
           } else {
-            // return loginreg();
+            return loginreg();
 
           }
 

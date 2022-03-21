@@ -8,19 +8,21 @@ class User {
   String username;
   String email;
   // String last_name;
+  String password;
   DateTime? dateOfBirth = DateTime(2000,1,1);
   String? role = 'normal_user'; // either normal_user or admin???
   int minute_play = 100;
   int num_workout = 5;
   String? user_type = 'normal'; //either normal or pro
-  double? height=173; // height in cm
-  double? weight = 75; // weight in kg
+  double height; // height in cm
+  double weight; // weight in kg
   String gender;
   int? heartRate;
   int? step;
   int? calories_burn = 1100;
   double? distance_walk; // in KM
   String profile_img_url;
+  String phoneNum;
 
 
   User({
@@ -28,11 +30,13 @@ class User {
     required this.username,
     required this.email,
     // required this.last_name,
+    this.password = 'password',
     this.gender = 'Male',
     this.role,
+    this.phoneNum = '(66) 205-9099',
     this.user_type,
-    this.height,
-    this.weight,
+    this.height=175,
+    this.weight= 75,
     this.dateOfBirth,
     this.calories_burn,
     this.heartRate = 95,
@@ -44,8 +48,8 @@ class User {
   });
 
   double compute_bmi(){
-    double height_m = height!/100;
-    return weight!/(height_m*height_m);
+    double height_m = height/100;
+    return weight/(height_m*height_m);
   }
 
   String get_obesity_status(){

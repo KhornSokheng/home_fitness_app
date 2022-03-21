@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:string_validator/string_validator.dart';
 import 'package:home_fitness/models/userdataprofile.dart';
 import 'package:home_fitness/widgets/appbar_widget.dart';
+
+import '../../models/user.dart';
+import '../../providers/user_provider.dart';
 
 // This class handles the Page to edit the Name Section of the User Profile.
 class EditNameFormPage extends StatefulWidget {
@@ -17,7 +21,7 @@ class EditNameFormPageState extends State<EditNameFormPage> {
   final _formKey = GlobalKey<FormState>();
   final firstNameController = TextEditingController();
   final secondNameController = TextEditingController();
-  var user = UserDataProfile.myUser;
+  // var user = UserDataProfile.myUser;
 
   @override
   void dispose() {
@@ -25,12 +29,16 @@ class EditNameFormPageState extends State<EditNameFormPage> {
     super.dispose();
   }
 
-  void updateUserValue(String name) {
-    user.name = name;
-  }
+  // void updateUserValue(String name) {
+  //   user.name = name;
+  // }
+
 
   @override
   Widget build(BuildContext context) {
+
+    User user = Provider.of<UserProvider>(context, listen: false).user;
+
     return Scaffold(
         appBar: buildAppBar(context),
         body: Form(
@@ -42,7 +50,7 @@ class EditNameFormPageState extends State<EditNameFormPage> {
               SizedBox(
                   width: 330,
                   child: const Text(
-                    "What's Your Name?",
+                    "Enter Your New Name",
                     style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
@@ -61,9 +69,9 @@ class EditNameFormPageState extends State<EditNameFormPage> {
                             // Handles Form Validation for First Name
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Please enter your first name';
+                                return 'Please enter your first name!';
                               } else if (!isAlpha(value)) {
-                                return 'Only Letters Please';
+                                return 'Only Letters, Please!';
                               }
                               return null;
                             },
@@ -80,9 +88,9 @@ class EditNameFormPageState extends State<EditNameFormPage> {
                             // Handles Form Validation for Last Name
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Please enter your last name';
+                                return 'Please enter your last name!';
                               } else if (!isAlpha(value)) {
-                                return 'Only Letters Please';
+                                return 'Only Letters, Please!';
                               }
                               return null;
                             },
@@ -105,9 +113,12 @@ class EditNameFormPageState extends State<EditNameFormPage> {
                             if (_formKey.currentState!.validate() &&
                                 isAlpha(firstNameController.text +
                                     secondNameController.text)) {
-                              updateUserValue(firstNameController.text +
+                              // updateUserValue(firstNameController.text +
+                              //     " " +
+                              //     secondNameController.text);
+                              user.username = firstNameController.text +
                                   " " +
-                                  secondNameController.text);
+                                  secondNameController.text;
                               Navigator.pop(context);
                             }
                           },
@@ -120,5 +131,7 @@ class EditNameFormPageState extends State<EditNameFormPage> {
             ],
           ),
         ));
+
   }
+
 }

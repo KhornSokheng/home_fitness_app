@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:string_validator/string_validator.dart';
 import 'package:home_fitness/models/userdataprofile.dart';
 import 'package:home_fitness/widgets/appbar_widget.dart';
+
+import '../../models/user.dart';
+import '../../providers/user_provider.dart';
 
 // This class handles the Page to edit the Phone Section of the User Profile.
 class EditPhoneFormPage extends StatefulWidget {
@@ -15,7 +19,7 @@ class EditPhoneFormPage extends StatefulWidget {
 class EditPhoneFormPageState extends State<EditPhoneFormPage> {
   final _formKey = GlobalKey<FormState>();
   final phoneController = TextEditingController();
-  var user = UserDataProfile.myUser;
+  // var user = UserDataProfile.myUser;
 
   @override
   void dispose() {
@@ -23,18 +27,22 @@ class EditPhoneFormPageState extends State<EditPhoneFormPage> {
     super.dispose();
   }
 
-  void updateUserValue(String phone) {
+  String updateUserValue(String phone) {
     String formattedPhoneNumber = "(" +
         phone.substring(0, 3) +
         ") " +
         phone.substring(3, 6) +
         "-" +
         phone.substring(6, phone.length);
-    user.phone = formattedPhoneNumber;
+    // user.phone = formattedPhoneNumber;
+    return formattedPhoneNumber;
   }
 
   @override
   Widget build(BuildContext context) {
+
+    User provider_user = Provider.of<UserProvider>(context, listen: false).user;
+
     return Scaffold(
         appBar: buildAppBar(context),
         body: Form(
@@ -46,7 +54,7 @@ class EditPhoneFormPageState extends State<EditPhoneFormPage> {
                 SizedBox(
                     width: 320,
                     child: const Text(
-                      "What's Your Phone Number?",
+                      "Enter your phone number",
                       style:
                           TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                     )),
@@ -56,6 +64,7 @@ class EditPhoneFormPageState extends State<EditPhoneFormPage> {
                         height: 100,
                         width: 320,
                         child: TextFormField(
+                          maxLength: 10,
                           // Handles Form Validation
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -84,7 +93,9 @@ class EditPhoneFormPageState extends State<EditPhoneFormPage> {
                               // Validate returns true if the form is valid, or false otherwise.
                               if (_formKey.currentState!.validate() &&
                                   isNumeric(phoneController.text)) {
-                                updateUserValue(phoneController.text);
+                                provider_user.phoneNum = updateUserValue(phoneController.text);
+                                print(provider_user.phoneNum);
+
                                 Navigator.pop(context);
                               }
                             },

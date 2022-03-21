@@ -36,42 +36,89 @@ class _ProfileState extends State<Profile> {
         centerTitle: true,
       ),
       
-        body: Column(
-          children: [
-            AppBar(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              toolbarHeight: 10,
-            ),
-            InkWell(
-                onTap: () {
-                  navigateSecondPage(EditImagePage());
-                },
-                child: DisplayImage(
-                  // imagePath: userdataprofile.image,
-                  imagePath: user.profile_img_url,
-                  onPressed: () {},
-                )),
-            buildUserInfoDisplay(
-                // userdataprofile.name, '', EditNameFormPage()),
-                user.username, 'Name', EditNameFormPage()),
-            buildUserInfoDisplay(
-                user.email, 'Email', EditEmailFormPage()),
-            buildUserInfoDisplay(
-                userdataprofile.phone, 'Phone', EditPhoneFormPage()),
+        body: SingleChildScrollView(
+          child: Center(
+            child: Container(
+              padding: EdgeInsets.all(5),
+              width: 500,
+              // color: Colors.orange[50],
+              child: Column(
+                children: [
+                  AppBar(
+                    backgroundColor: Colors.transparent,
+                    elevation: 0,
+                    toolbarHeight: 10,
+                  ),
+                  InkWell(
+                      onTap: () {
+                        navigateSecondPage(EditImagePage());
+                      },
+                      child: DisplayImage(
+                        // imagePath: userdataprofile.image,
+                        imagePath: user.profile_img_url,
+                        onPressed: () {},
+                      )),
+                  buildUserInfoDisplay(
+                      // userdataprofile.name, '', EditNameFormPage()),
+                      user.username, 'Name', EditNameFormPage(),true),
+                  buildUserInfoDisplay(
+                      user.email, 'Email', EditEmailFormPage(),false),
+                  buildUserInfoDisplay(
+                      user.phoneNum, 'Phone', EditPhoneFormPage(),true),
 
-            buildUserInfoDisplay(
-                userdataprofile.password, 'Password', EditPasswordFormPage()),
-            Expanded(
-              child: buildAbout(userdataprofile),
-              flex: 4,
-            )
-          ],
+                  buildUserInfoDisplay(
+                      user.password, 'Password', EditPasswordFormPage(),true),
+                  buildUserInfoDisplay(
+                      user.get_obesity_status(), 'BMI Status', EditNameFormPage(),false),
+                  buildUserInfoDisplay(
+                      user.height.toString(), 'Height(cm)', EditNameFormPage(),false),
+                  Slider(
+                    value: user.height,
+                    min: 1,
+                    max: 200,
+                    divisions: 199,
+                    autofocus: true,
+                    label: user.height.toString(),
+                    onChanged: (newHeight) {
+                      setState(() {
+                        user.height = newHeight;
+                        print(user.height);
+                      });
+                    },
+                  ),
+                  buildUserInfoDisplay(
+                      user.weight.toString(), 'Weight(kg)', EditNameFormPage(),false),
+                  Slider(
+                    value: user.weight,
+                    min: 1,
+                    max: 200,
+                    divisions: 199,
+                    autofocus: true,
+                    label: user.weight.toString(),
+                    onChanged: (newWeight) {
+                      setState(() {
+                        user.weight = newWeight;
+                        print(user.weight);
+                      });
+                    },
+                  ),
+
+                  SizedBox(height: 150,)
+
+
+                  // Expanded(
+                  //   child: buildAbout(userdataprofile),
+                  //   flex: 4,
+                  // )
+                ],
+              ),
+            ),
+          ),
         ),
       );
     }
 
-    Widget buildUserInfoDisplay(String getValue, String title, Widget editPage) =>
+    Widget buildUserInfoDisplay(String getValue, String title, Widget editPage, bool editable) =>
         Padding(
             padding: EdgeInsets.only(bottom: 10),
             child: Column(
@@ -101,16 +148,21 @@ class _ProfileState extends State<Profile> {
                       Expanded(
                           child: TextButton(
                               onPressed: () {
-                                navigateSecondPage(editPage);
+                                if (editable){
+                                  navigateSecondPage(editPage);
+                                }
                               },
                               child: Text(
-                                getValue,
+                                title=='Password' ? 'Click to change your password':getValue,
                                 style: TextStyle(fontSize: 16, height: 1.4),
                               ))),
-                      Icon(
-                        Icons.keyboard_arrow_right,
-                        color: Colors.grey,
-                        size: 40.0,
+                      Visibility(
+                        visible: editable,
+                        child: Icon(
+                          Icons.keyboard_arrow_right,
+                          color: Colors.grey,
+                          size: 40.0,
+                        ),
                       )
                     ]))
               ],
