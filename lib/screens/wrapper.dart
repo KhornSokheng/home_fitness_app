@@ -37,12 +37,17 @@ class LoginOrMenu extends StatelessWidget {
             final google_user = FirebaseAuth.instance.currentUser!;
             print(google_user);
 
+            // TODO
+            // when database created,
+            //need to fetch data from the database before setup to local provider
+
             Provider.of<UserProvider>(context, listen: false).updateUser(
               fitness_user.User(
                 id: 3,
                 username: google_user.displayName!,
                 profile_img_url: google_user.photoURL!,
                 email: google_user.email!,
+                role: 'admin'
 
               )
             );
