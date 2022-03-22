@@ -67,6 +67,10 @@ class User {
     this.distance_walk = (this.step!/1300);
   }
 
+  void logout(){
+
+  }
+
   Future<void> getUser() async{
     // var url = Uri.parse('https://example.com/whatsit/create');
     // var response = await http.post(url, body: {'name': 'doodle', 'color': 'blue'});
