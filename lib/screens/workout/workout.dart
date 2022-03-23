@@ -16,12 +16,12 @@ class Workout extends StatefulWidget {
 class _WorkoutState extends State<Workout> {
 
   final List _elements = [
-    {'name': 'Basic Yoga', 'group': 'For You','duration': '5','level': 'Easy'},
-    {'name': 'Warm-Up Stretch', 'group': 'For You','duration': '9','level': 'Easy'},
-    {'name': '5-Minute Plank', 'group': 'For You','duration': '5','level': 'Medium'},
-    {'name': 'Runner Warm-Up', 'group': 'New Workouts','duration': '5','level': 'Easy'},
-    {'name': 'Muscle Builder', 'group': 'New Workouts','duration': '7','level': 'Medium'},
-    {'name': '10-Minutes Bodyweight Burn', 'group': 'Popular','duration': '10','level': 'hard'},
+    // {'title': 'Basic Yoga', 'type': 'For You','duration': '5','level': 'Easy'},
+    // {'title': 'Warm-Up Stretch', 'type': 'For You','duration': '9','level': 'Easy'},
+    // {'title': '5-Minute Plank', 'type': 'For You','duration': '5','level': 'Medium'},
+    // {'title': 'Runner Warm-Up', 'type': 'New Workouts','duration': '5','level': 'Easy'},
+    // {'title': 'Muscle Builder', 'type': 'New Workouts','duration': '7','level': 'Medium'},
+    // {'title': '10-Minutes Bodyweight Burn', 'type': 'Popular','duration': '10','level': 'hard'},
   ];
 
 
@@ -38,51 +38,62 @@ class _WorkoutState extends State<Workout> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text("Workouts"),
-        centerTitle: true,
-      ),
-      body: GroupedListView<dynamic, String>(
-        elements: _elements,
-        groupBy: (element) => element['group'],
-        groupComparator: (value1, value2) => value2.compareTo(value1),
-        itemComparator: (item1, item2) =>
-            item1['name'].compareTo(item2['name']),
-        order: GroupedListOrder.DESC,
-        useStickyGroupSeparators: true,
-        groupSeparatorBuilder: (String value) => Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            value,
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
+
+
+    workoutVideos.map((e) {
+      print(e.title);
+
+      _elements.add(e.toJson());
+    }).toList();
+
+      return Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          title: Text("Workouts"),
+          centerTitle: true,
         ),
-        itemBuilder: (c, element) {
-          return Card(
-            elevation: 8.0,
-            margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-            child: Container(
-              child: ListTile(
-                contentPadding:
-                EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-                leading: Image.asset('assets/default_thumbnail.png'),
-                title: Text('${element['name']} (${element['level']}): ${element['duration']}mns'),
-                // title: Row(
-                //   children: [
-                //     Text(element['name']),
-                //     SizedBox(width: 5,),
-                //     Text(element['level']),
-                //   ],
-                // ),
-                trailing: Icon(Icons.arrow_forward),
-              ),
+        body: GroupedListView<dynamic, String>(
+          elements: _elements,
+          groupBy: (element) => element['type'],
+          groupComparator: (value1, value2) => value2.compareTo(value1),
+          itemComparator: (item1, item2) =>
+              item1['title'].compareTo(item2['title']),
+          order: GroupedListOrder.DESC,
+          useStickyGroupSeparators: true,
+          groupSeparatorBuilder: (String value) => Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              value,
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-          );
-        },
-      ),
-    );
-  }
+          ),
+          itemBuilder: (c, element) {
+            // TODO
+            // wrap with a gestureDetector
+            return Card(
+              elevation: 8.0,
+              margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+              child: Container(
+                child: ListTile(
+                  contentPadding:
+                  EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                  leading: Image.asset('assets/default_thumbnail.png'),
+                  title: Text('${element['title']} (${element['level']}): ${element['duration']}mns'),
+                  // title: Row(
+                  //   children: [
+                  //     Text(element['title']),
+                  //     SizedBox(width: 5,),
+                  //     Text(element['level']),
+                  //   ],
+                  // ),
+                  trailing: Icon(Icons.arrow_forward),
+                ),
+              ),
+            );
+          },
+        ),
+      );
+    }
+
 }
