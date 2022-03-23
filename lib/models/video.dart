@@ -25,7 +25,8 @@ class Video{
     this.calories_burn = 100,
     // this.num_view = Random().nextInt(2000)+2000;
     this.numView = 786,
-    this.thumbnailImageUrl = 'assets/default_thumbnail.png',
+    // this.thumbnailImageUrl = 'assets/default_thumbnail.png',
+    this.thumbnailImageUrl = 'assets/default_thumbnail5.png',
     this.description = 'Best for your muscle',
   });
 

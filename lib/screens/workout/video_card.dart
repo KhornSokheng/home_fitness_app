@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:home_fitness/screens/workout/video_display.dart';
 
 import '../../models/video.dart';
 
@@ -12,14 +15,28 @@ class VideoCard extends StatelessWidget {
     required this.video,
   });
 
+  List<Color?> colors = [
+    Colors.green[200],
+    Colors.orange[200],
+    Colors.blue[200],
+    Colors.red[200],
+    Colors.pink[200],
+    Colors.purple[200],
+  ];
+
   @override
   Widget build(BuildContext context) => GestureDetector(
+
+    // onTap: () => Navigator.of(context).push(MaterialPageRoute(
+    //   builder: (context) => VideoDisplay(video: video),
+    // )),
+
     child: Container(
       padding: const EdgeInsets.all(16),
       height: 150,
       decoration: BoxDecoration(
         // color: exerciseSet.color,
-        color: Colors.green[200],
+        color: colors[Random().nextInt(colors.length)],
         borderRadius: BorderRadius.circular(16),
       ),
       child: Row(
@@ -46,7 +63,7 @@ class VideoCard extends StatelessWidget {
           style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
           maxLines: 1,
         ),
-        SizedBox(height: 10),
+        SizedBox(height: 50),
         Text('$level : $minutes Mins'),
       ],
     );

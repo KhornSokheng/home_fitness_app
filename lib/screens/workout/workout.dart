@@ -71,6 +71,8 @@ class _WorkoutState extends State<Workout> {
         final name = getCategoryName(type);
         final fontWeight =
         selectedType == type ? FontWeight.bold : FontWeight.normal;
+        final double fontSize =
+        selectedType == type ? 20 : 16;
 
         return Expanded(
           child: Center(
@@ -81,7 +83,7 @@ class _WorkoutState extends State<Workout> {
                 padding: EdgeInsets.symmetric(vertical: 8),
                 child: Text(
                   name,
-                  style: TextStyle(fontWeight: fontWeight, fontSize: 16,
+                  style: TextStyle(fontWeight: fontWeight, fontSize: fontSize,
                     // color: Colors.green
                   ),
                 ),
