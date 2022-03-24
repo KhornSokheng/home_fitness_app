@@ -9,6 +9,7 @@ class GetInfo extends StatefulWidget {
 }
 
 class _GetInfoState extends State<GetInfo> {
+  bool _isSelected = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,45 +18,17 @@ class _GetInfoState extends State<GetInfo> {
         centerTitle: true,
       ),
       body: Container(
-        padding: EdgeInsets.all(100),
-        color: Color.fromARGB(255, 162, 206, 243),
+        padding: EdgeInsets.all(150),
         child: Form(
           child: SingleChildScrollView(
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(
-                'Personal history',
-                style: TextStyle(fontSize: 35, fontFamily: 'BebasNeue'),
-              ),
-              Text("Nickname",
-                  style: TextStyle(fontSize: 20, fontFamily: 'BebasNeue')),
-              TextFormField(),
-              SizedBox(
-                height: 15,
-              ),
-              Text("Age",
-                  style: TextStyle(fontSize: 20, fontFamily: 'BebasNeue')),
-              TextFormField(),
-              SizedBox(
-                height: 15,
-              ),
-              Text("Weight",
-                  style: TextStyle(fontSize: 20, fontFamily: 'BebasNeue')),
-              TextFormField(),
-              SizedBox(
-                height: 15,
-              ),
-              Text("Height",
-                  style: TextStyle(fontSize: 20, fontFamily: 'BebasNeue')),
-              TextFormField(),
-              SizedBox(),
               Text(
                 'Choose aptitude',
                 style: TextStyle(fontSize: 35, fontFamily: 'BebasNeue'),
               ),
               Text("How often do you exercise.",
                   style: TextStyle(fontSize: 20, fontFamily: 'BebasNeue')),
-              TextFormField(),
               SizedBox(),
               Text("Have you used an exercise program before.",
                   style: TextStyle(fontSize: 20, fontFamily: 'BebasNeue')),
