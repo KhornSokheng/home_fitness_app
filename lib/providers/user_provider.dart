@@ -8,6 +8,7 @@ class UserProvider extends ChangeNotifier {
     role: 'admin',
     gender: 'Male',
     email: 'default@gmail.com',
+    interest: ['Yoga','Muscle','Running']
 
   );
 
@@ -17,6 +18,7 @@ class UserProvider extends ChangeNotifier {
     role: 'admin',
     gender: 'Male',
     email: 'default@gmail.com',
+    interest: ['Muscle'],
 
   );
 

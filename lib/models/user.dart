@@ -23,6 +23,8 @@ class User {
   double? distance_walk; // in KM
   String profile_img_url;
   String phoneNum;
+  List<String> interest;
+  String level;
 
 
   User({
@@ -43,9 +45,19 @@ class User {
     this.step = 1980,
     this.distance_walk  = 2,
     this.profile_img_url = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4Y2LJnaCmGkiNXrQ9BDNoWPljvdLT1308iw&usqp=CAU',
-
+    required this.interest,
+    this.level='Beginner',
 
   });
+
+  String getVieoLevel(){
+    if(this.level=='Beginner')
+      return 'Easy';
+    else if(this.level=='Intermediate')
+      return 'Medium';
+    else
+      return 'Hard';
+  }
 
   double compute_bmi(){
     double height_m = height/100;

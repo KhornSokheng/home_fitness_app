@@ -10,9 +10,11 @@ class VideoCard extends StatelessWidget {
   // const VideoCard({Key? key}) : super(key: key);
 
   final Video video;
+  List<Video> selectedWorkoutList;
 
   VideoCard({
     required this.video,
+    required this.selectedWorkoutList
   });
 
   List<Color?> colors = [
@@ -27,9 +29,12 @@ class VideoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) => GestureDetector(
 
-    // onTap: () => Navigator.of(context).push(MaterialPageRoute(
-    //   builder: (context) => VideoDisplay(video: video),
-    // )),
+    onTap: () => Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => VideoDisplay(
+          video: video,
+          selectedWorkoutList:selectedWorkoutList
+      ),
+    )),
 
     child: Container(
       padding: const EdgeInsets.all(16),

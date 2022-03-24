@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:home_fitness/screens/achievement/achievement.dart';
@@ -47,10 +49,12 @@ class LoginOrMenu extends StatelessWidget {
                 username: google_user.displayName!,
                 profile_img_url: google_user.photoURL!,
                 email: google_user.email!,
-                role: 'admin'
+                role: 'admin',
+                  interest: ['Yoga','Muscle','Running']
 
               )
             );
+            // Future.delayed(Duration(seconds: 5 ));
 
             // Navigator.push(context,
             // MaterialPageRoute(builder: (BuildContext context) {
@@ -64,49 +68,49 @@ class LoginOrMenu extends StatelessWidget {
 
           }
 
-          return Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (BuildContext context) {
-                        return loginreg();
-                      }));
-                    },
-                    child: Text('Login Test')),
-                SizedBox(
-                  width: 100,
-                ),
-                ElevatedButton(
-                    onPressed: () {
-                      // MaterialPageRoute(builder: (BuildContext context) {
-                      //   return Launcher();
-                      // });
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (BuildContext context) {
-                        return Launcher();
-                      }));
-                    },
-                    child: Text('Go to Menu')),
-                SizedBox(
-                  width: 100,
-                ),
-                ElevatedButton(
-                    onPressed: () {
-                      // MaterialPageRoute(builder: (BuildContext context) {
-                      //   return Launcher();
-                      // });
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (BuildContext context) {
-                        return AdminReport();
-                      }));
-                    },
-                    child: Text('Log in as Admin'))
-              ],
-            ),
-          );
+          // return Center(
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.center,
+          //     children: [
+          //       ElevatedButton(
+          //           onPressed: () {
+          //             Navigator.push(context,
+          //                 MaterialPageRoute(builder: (BuildContext context) {
+          //               return loginreg();
+          //             }));
+          //           },
+          //           child: Text('Login Test')),
+          //       SizedBox(
+          //         width: 100,
+          //       ),
+          //       ElevatedButton(
+          //           onPressed: () {
+          //             // MaterialPageRoute(builder: (BuildContext context) {
+          //             //   return Launcher();
+          //             // });
+          //             Navigator.push(context,
+          //                 MaterialPageRoute(builder: (BuildContext context) {
+          //               return Launcher();
+          //             }));
+          //           },
+          //           child: Text('Go to Menu')),
+          //       SizedBox(
+          //         width: 100,
+          //       ),
+          //       ElevatedButton(
+          //           onPressed: () {
+          //             // MaterialPageRoute(builder: (BuildContext context) {
+          //             //   return Launcher();
+          //             // });
+          //             Navigator.push(context,
+          //                 MaterialPageRoute(builder: (BuildContext context) {
+          //               return AdminReport();
+          //             }));
+          //           },
+          //           child: Text('Log in as Admin'))
+          //     ],
+          //   ),
+          // );
         });
   }
 }
