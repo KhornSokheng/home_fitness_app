@@ -64,53 +64,56 @@ class LoginOrMenu extends StatelessWidget {
           } else if (snapshot.hasError) {
             return Center(child: Text('Something Went Wrong!'));
           } else {
-            return loginreg();
+            // return loginreg();
 
           }
 
-          // return Center(
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.center,
-          //     children: [
-          //       ElevatedButton(
-          //           onPressed: () {
-          //             Navigator.push(context,
-          //                 MaterialPageRoute(builder: (BuildContext context) {
-          //               return loginreg();
-          //             }));
-          //           },
-          //           child: Text('Login Test')),
-          //       SizedBox(
-          //         width: 100,
-          //       ),
-          //       ElevatedButton(
-          //           onPressed: () {
-          //             // MaterialPageRoute(builder: (BuildContext context) {
-          //             //   return Launcher();
-          //             // });
-          //             Navigator.push(context,
-          //                 MaterialPageRoute(builder: (BuildContext context) {
-          //               return Launcher();
-          //             }));
-          //           },
-          //           child: Text('Go to Menu')),
-          //       SizedBox(
-          //         width: 100,
-          //       ),
-          //       ElevatedButton(
-          //           onPressed: () {
-          //             // MaterialPageRoute(builder: (BuildContext context) {
-          //             //   return Launcher();
-          //             // });
-          //             Navigator.push(context,
-          //                 MaterialPageRoute(builder: (BuildContext context) {
-          //               return AdminReport();
-          //             }));
-          //           },
-          //           child: Text('Log in as Admin'))
-          //     ],
-          //   ),
-          // );
+          return Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (BuildContext context) {
+                        return loginreg();
+                      }));
+                    },
+                    child: Text('Login Test')),
+                SizedBox(
+                  width: 100,
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      // MaterialPageRoute(builder: (BuildContext context) {
+                      //   return Launcher();
+                      // });
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (BuildContext context) {
+                        return Launcher();
+                      }));
+                    },
+                    child: Text('Go to Menu')),
+                SizedBox(
+                  width: 100,
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      // MaterialPageRoute(builder: (BuildContext context) {
+                      //   return Launcher();
+                      // });
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (BuildContext context) {
+                        return AdminReport();
+                      }));
+                    },
+                    child: Text('Log in as Admin'))
+              ],
+            ),
+          );
+
+
+
         });
   }
 }
