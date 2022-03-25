@@ -35,7 +35,11 @@ class _VideoDisplayState extends State<VideoDisplay> {
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
       backgroundColor: Colors.transparent,
-      title: Text(currentWorkout.title),
+      title: Text(currentWorkout.title,
+        style: TextStyle(
+          color: Colors.black
+        ),
+      ),
       centerTitle: true,
       elevation: 0,
       iconTheme: IconThemeData(

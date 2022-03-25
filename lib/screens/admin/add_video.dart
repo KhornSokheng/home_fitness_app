@@ -33,7 +33,13 @@ class _AddVideoState extends State<AddVideo> {
   String? videoName;
   String? urlDownload;
 
+  Uint8List? imageBytes;
+  String? imageName;
+  String? imageUrlDownload;
+
   UploadTask? videoTask;
+  UploadTask? imageTask;
+
 
   List<String> levelItems = ['Easy', 'Medium', 'Hard'];
   final typeItems = [
@@ -75,7 +81,8 @@ class _AddVideoState extends State<AddVideo> {
     // get file
     // final result = await FilePicker.platform.pickFiles(type: FileType.any, allowMultiple: false);
 
-    videoName = videoBytes != null ? videoName : 'No File Selected';
+    videoName = videoBytes != null ? videoName : 'No Video Selected';
+    imageName = imageBytes != null ? imageName : 'No Image Selected';
 
     return AlertDialog(
       title: const Text(
@@ -100,14 +107,24 @@ class _AddVideoState extends State<AddVideo> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(videoName!),
 
+              // upload video
+              Text(videoName!),
               ElevatedButton.icon(
                   onPressed: selectVideo,
-                  icon: Icon(Icons.attach_file_outlined),
-                  label: Text('Upload Video')),
-
+                  icon: Icon(Icons.ondemand_video_sharp),
+                  label: Text('Upload Video'),
+              ),
               videoTask != null ? buildUploadStatus(videoTask!) : Container(),
+
+              //upload image
+              Text(imageName!),
+              ElevatedButton.icon(
+                  onPressed: selectImage,
+                  icon: Icon(Icons.image_outlined),
+                  label: Text('Upload Image Thumbnail'),
+              ),
+              imageTask != null ? buildUploadStatus(imageTask!) : Container(),
 
               TextFormField(
                 validator: (value) {
@@ -120,7 +137,7 @@ class _AddVideoState extends State<AddVideo> {
                 decoration: InputDecoration(
                     contentPadding: EdgeInsets.all(10),
                     hintText: 'Ex: Basic Yoga',
-                    labelText: 'Title'),
+                    labelText: 'Video Title'),
                 autofocus: true,
                 controller: titleController,
                 onFieldSubmitted: (_) => submit(),
@@ -145,22 +162,22 @@ class _AddVideoState extends State<AddVideo> {
               //   onFieldSubmitted: (_) => submit(),
               // ),
 
-              TextFormField(
-                validator: (value) {
-                  if (value == null || value.length < 1) {
-                    return 'Enter link of image';
-                  } else {
-                    return null; // the form is valid
-                  }
-                },
-                decoration: InputDecoration(
-                    contentPadding: EdgeInsets.all(10),
-                    hintText: '.png, .jpg ...',
-                    labelText: 'Thumbnail Image URl'),
-                autofocus: true,
-                controller: imageUrlController,
-                onFieldSubmitted: (_) => submit(),
-              ),
+              // TextFormField(
+              //   validator: (value) {
+              //     if (value == null || value.length < 1) {
+              //       return 'Enter link of image';
+              //     } else {
+              //       return null; // the form is valid
+              //     }
+              //   },
+              //   decoration: InputDecoration(
+              //       contentPadding: EdgeInsets.all(10),
+              //       hintText: '.png, .jpg ...',
+              //       labelText: 'Thumbnail Image URl'),
+              //   autofocus: true,
+              //   controller: imageUrlController,
+              //   onFieldSubmitted: (_) => submit(),
+              // ),
 
               TextFormField(
                 validator: (value) {
@@ -299,30 +316,7 @@ class _AddVideoState extends State<AddVideo> {
                   });
                 },
               ),
-              // SizedBox(height: 25,),
-              // Text('${time.hour} : ${time.minute.toString()=='0' ? '00':time.minute.toString()}'),
-              // SizedBox(height: 10,),
-              // ElevatedButton(
-              //   child: Text('select time'),
-              //   onPressed: () async {
-              //     TimeOfDay? selectedTime = await showTimePicker(
-              //
-              //       context: context,
-              //       initialTime: time,
-              //       // firstDate: releaseDate,
-              //       // lastDate: DateTime(2100)
-              //     );
-              //
-              //
-              //     if(selectedTime != null) {
-              //       setState(() {
-              //         time = selectedTime;
-              //       });
-              //       return;
-              //     }
-              //
-              //   },
-              // ),
+
             ],
           ),
         )),
@@ -342,7 +336,7 @@ class _AddVideoState extends State<AddVideo> {
           duration: int.parse(durationController.text),
           caloriesBurn: int.parse(caloryController.text),
           videoUrl: urlDownload!,
-          thumbnailImageUrl: imageUrlController.text,
+          thumbnailImageUrl: imageUrlDownload!,
           description: descController.text);
       Navigator.of(myBuildContext).pop(video);
 
@@ -398,7 +392,7 @@ class _AddVideoState extends State<AddVideo> {
     }
 
     // final fileName = basename(videoFile!.path);
-    final destination = 'files/$videoName';
+    final destination = 'videos/$videoName';
 
     videoTask = FirebaseStorageApi.uploadVideoBytes(destination, videoBytes!);
     setState(() {});
@@ -411,6 +405,39 @@ class _AddVideoState extends State<AddVideo> {
 
 
     print('Download-Link: $urlDownload');
+  }
+
+  Future selectImage() async {
+    // get file
+    final result = await FilePicker.platform.pickFiles(type: FileType.any, allowMultiple: false);
+    if (result == null) return;
+    setState(() {
+      imageBytes = result.files.first.bytes;
+      imageName = result.files.first.name;
+
+    });
+    await uploadImageFile();
+  }
+
+  Future uploadImageFile() async {
+    if (imageBytes == null) {
+      print('Cannot find image');
+      return;
+    }
+
+    final destination = 'images/$imageName';
+
+    imageTask = FirebaseStorageApi.uploadVideoBytes(destination, imageBytes!);
+    setState(() {});
+
+    if (imageTask == null) return;
+
+    final snapshot = await imageTask!.whenComplete(() {});
+    imageUrlDownload = await snapshot.ref.getDownloadURL();
+    setState(() {});
+
+
+    print('Image Download-Link: $imageUrlDownload');
   }
 
   Widget buildUploadStatus(UploadTask task) => StreamBuilder<TaskSnapshot>(

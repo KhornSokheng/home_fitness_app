@@ -47,7 +47,7 @@ class VideoCard extends StatelessWidget {
       child: Row(
         children: [
           Expanded(flex: 3, child: buildText()),
-          Expanded(child: Image.asset(video.thumbnailImageUrl))
+          Expanded(child: Image.network(video.thumbnailImageUrl))
           // Expanded(child: Image.asset('assets/default_thumbnail.png'))
         ],
       ),
