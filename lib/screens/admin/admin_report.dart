@@ -59,7 +59,7 @@ class _AdminReportState extends State<AdminReport> {
       /// Reference to document
       final docVideo = FirebaseFirestore.instance.collection('videos').doc() ;
 
-
+      new_video.id = docVideo.id;
 
       /// Create document and write data to Firebase
       await docVideo.set(new_video.toJson());

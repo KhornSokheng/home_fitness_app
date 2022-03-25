@@ -1,9 +1,8 @@
 // import 'dart:math';
 import 'package:video_player/video_player.dart';
 
-
-
 class Video {
+  String? id;
   String title;
   String type; // the workout type like Yoga, Muscle...
   String level; // Easy, Medium, or Hard
@@ -17,12 +16,13 @@ class Video {
   VideoPlayerController? controller;
 
   Video({
+    this.id = 'videoID',
     required this.title,
     required this.level,
     required this.type,
     required this.duration,
     this.videoUrl =
-        'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
+        'https://firebasestorage.googleapis.com/v0/b/home-fitness-d9553.appspot.com/o/files%2FThe%20Workout%20_%20Pencilmation%20Cartoon%20%2342.mp4?alt=media&token=134fe601-3ed1-44d9-b939-aac20244b289',
     this.caloriesBurn = 100,
     this.numView = 0,
     this.thumbnailImageUrl = 'assets/default_thumbnail5.png',
@@ -31,6 +31,7 @@ class Video {
   });
 
   Map<String, dynamic> toJson() => {
+        'id': id,
         'title': title,
         'type': type,
         'level': level,
@@ -53,5 +54,8 @@ class Video {
       description: json['description'],
       releaseDate: json['releaseDate'],
       caloriesBurn: json['caloriesBurn'],
-      videoUrl: json['videoUrl']);
+      videoUrl: json['videoUrl'],
+      id: json['id'],
+
+  );
 }
