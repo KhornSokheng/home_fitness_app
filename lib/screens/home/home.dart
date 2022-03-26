@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:home_fitness/models/user.dart';
 import 'package:home_fitness/providers/user_provider.dart';
+import 'package:home_fitness/screens/home/purchase.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
@@ -43,17 +44,19 @@ class _HomeState extends State<Home> {
                 height: 500,
               ),
               ElevatedButton(
-                onPressed: () {  },
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return Purchase();
+                  }));
+                },
                 child: Text(
-                    'Update to Pro',
+                  'Update to Pro',
                   style: TextStyle(
                     // color: Colors.orangeAccent,
                     // fontSize: 60,
                     fontFamily: 'RussoOne',
                   ),
-
                 ),
-
               ),
               /* Image.network(
                   'https://st2.depositphotos.com/4366957/6625/i/600/depositphotos_66253287-stock-photo-muscular-bodybuilder-guy-close-up.jpg'),*/

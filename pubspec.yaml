@@ -55,6 +55,9 @@ dependencies:
   path_provider: ^2.0.4
   video_player: ^2.3.0
   file_picker: ^4.5.1
+  in_app_purchases_paywall_ui: ^0.5.1
+  flutter_countdown_timer: ^4.1.0
+  in_app_purchases_intl: ^0.0.3
 
 dev_dependencies:
   flutter_test:
