@@ -25,8 +25,8 @@ class Video {
         'https://firebasestorage.googleapis.com/v0/b/home-fitness-d9553.appspot.com/o/files%2FThe%20Workout%20_%20Pencilmation%20Cartoon%20%2342.mp4?alt=media&token=134fe601-3ed1-44d9-b939-aac20244b289',
     this.caloriesBurn = 100,
     this.numView = 0,
-    // this.thumbnailImageUrl = 'https://firebasestorage.googleapis.com/v0/b/home-fitness-d9553.appspot.com/o/images%2Fimg.png?alt=media&token=87bf1f80-3a28-411b-a734-158ffff9499a',
-    this.thumbnailImageUrl = 'https://thumbs.dreamstime.com/b/jour-de-terre-d-environnement-dans-les-mains-des-arbres-cultivant-jeunes-plantes-bokeh-verdissent-la-main-femelle-fond-tenant-l-130247647.jpg',
+    this.thumbnailImageUrl = 'https://firebasestorage.googleapis.com/v0/b/home-fitness-d9553.appspot.com/o/images%2Fimg.png?alt=media&token=87bf1f80-3a28-411b-a734-158ffff9499a',
+    // this.thumbnailImageUrl = 'https://thumbs.dreamstime.com/b/jour-de-terre-d-environnement-dans-les-mains-des-arbres-cultivant-jeunes-plantes-bokeh-verdissent-la-main-femelle-fond-tenant-l-130247647.jpg',
     this.description = 'Best for your muscle',
     this.releaseDate,
   });
