@@ -28,7 +28,8 @@ class _VideoDisplayState extends State<VideoDisplay> {
     super.initState();
 
     // currentExercise = widget.exerciseSet.exercises.first;
-    currentWorkout = widget.selectedWorkoutList.firstWhere((video) => video == widget.video);
+    // currentWorkout = widget.selectedWorkoutList.firstWhere((video) => video == widget.video);
+    currentWorkout = widget.video;
   }
 
   @override

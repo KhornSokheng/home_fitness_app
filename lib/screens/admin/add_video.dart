@@ -46,6 +46,7 @@ class _AddVideoState extends State<AddVideo> {
     'Yoga',
     'Muscle',
     'Endurance',
+    'Running',
     'Strength',
     'Aerobic',
     'Flexibility'

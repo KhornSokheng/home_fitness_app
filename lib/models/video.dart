@@ -1,4 +1,5 @@
 // import 'dart:math';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:video_player/video_player.dart';
 
 class Video {
@@ -53,7 +54,7 @@ class Video {
       numView: json['numView'],
       thumbnailImageUrl: json['thumbnailImageUrl'],
       description: json['description'],
-      releaseDate: json['releaseDate'],
+      releaseDate: (json['releaseDate'] as Timestamp).toDate(),
       caloriesBurn: json['caloriesBurn'],
       videoUrl: json['videoUrl'],
       id: json['id'],

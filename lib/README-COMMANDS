@@ -1,0 +1,13 @@
+This file contain important notes and commands that may need to run
+
+1. The app must be run on port 7357 to be able to use google sign in
+    flutter run -d chrome --web-hostname localhost --web-port 7357
+
+2. Solve network image error, cors policy
+    flutter run -d chrome --web-renderer html
+    https://docs.flutter.dev/development/tools/web-renderers
+    https://docs.flutter.dev/development/platform-integration/web-images
+
+3.Retrieve data from firestore
+    https://firebase.flutter.dev/docs/firestore/usage#realtime-changes
+

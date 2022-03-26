@@ -58,6 +58,7 @@ class VideoCard extends StatelessWidget {
     final title = video.title;
     final minutes = video.duration;
     final level = video.level;
+    final type = video.type;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,6 +70,7 @@ class VideoCard extends StatelessWidget {
           maxLines: 1,
         ),
         SizedBox(height: 50),
+        Text(type),
         Text('$level : $minutes Mins'),
       ],
     );

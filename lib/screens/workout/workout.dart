@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 // import 'package:home_fitness/models/level.dart';
 import 'package:home_fitness/models/video.dart';
@@ -27,6 +28,17 @@ class _WorkoutState extends State<Workout> {
   @override
   Widget build(BuildContext context) {
 
+    //videos stream using StreamBuilder
+    final Stream<QuerySnapshot> _videosStream = FirebaseFirestore.instance.collection('videos').snapshots();
+
+    User user = Provider.of<UserProvider>(context).user;
+    // VideoProvider videoProvider = Provider.of<VideoProvider>(context);
+    // List<Video> all_videos = videoProvider.all_videos;
+    List<Video> all_videos = Provider.of<VideoProvider>(context).all_videos;
+
+    List<Video> selectedWorkoutList;
+
+
 
     return Scaffold(
         backgroundColor: Colors.white,
@@ -34,42 +46,68 @@ class _WorkoutState extends State<Workout> {
           title: Text("Workouts"),
           centerTitle: true,
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              buildCategoryLevel(),
-              SizedBox(height: 8),
-              buildWorkouts(context),
-              SizedBox(height: 50),
-            ],
-          ),
+        body: StreamBuilder<QuerySnapshot>(
+          stream: _videosStream,
+          builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+
+            if (snapshot.hasError) {
+              return Text('Something went wrong');
+            }
+
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: CircularProgressIndicator(),);
+
+            }
+
+            // videoProvider.updateVideos( snapshot.data!.docs.cast<Video>() );
+            List<Video> newList = [];
+           snapshot.data!.docs.forEach((document) {
+             Video video =  Video.fromJson(document.data()! as Map<String, dynamic>);
+             newList.add(video);
+
+           });
+           all_videos = newList;
+           Provider.of<VideoProvider>(context).updateVideos(all_videos);
+
+            if(getCategoryName(selectedType) == 'For You') {
+              selectedWorkoutList = all_videos
+                  .where((video) => user.interest.contains(video.type))
+                  .toList();
+
+            }else if( getCategoryName(selectedType) =='New Workout' ) {
+              DateTime now = DateTime.now();
+              selectedWorkoutList= all_videos
+                  .where((video) =>
+              video.releaseDate!.difference(now) < Duration(days: 3))
+                  .toList();
+            }else{
+              selectedWorkoutList = all_videos;
+            }
+
+            //sort the list by release date
+            selectedWorkoutList.sort((a,b)=>b.releaseDate!.compareTo(a.releaseDate!));
+
+            print(user.interest);
+            print(selectedWorkoutList.length);
+            // forYouList.map((e) => print(e.title));
+
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  buildCategoryLevel(),
+                  SizedBox(height: 8),
+                  buildWorkouts(context, selectedWorkoutList),
+                  SizedBox(height: 50),
+                ],
+              ),
+            );
+          }
         ));
   }
 
-  Widget buildWorkouts(BuildContext context) {
+  Widget buildWorkouts(BuildContext context,List<Video> selectedWorkoutList) {
 
-    User user = Provider.of<UserProvider>(context).user;
-    List<Video> all_videos = Provider.of<VideoProvider>(context).all_videos;
 
-    List<Video> selectedWorkoutList;
-
-    if(getCategoryName(selectedType) == 'For You') {
-      selectedWorkoutList = all_videos
-          .where((video) => user.interest.contains(video.type))
-          .toList();
-    }else if( getCategoryName(selectedType) =='New Workout' ) {
-      DateTime now = DateTime.now();
-      selectedWorkoutList= all_videos
-          .where((video) =>
-      video.releaseDate!.difference(now) < Duration(days: 3))
-          .toList();
-    }else{
-      selectedWorkoutList = all_videos;
-    }
-
-    print(user.interest);
-    print(selectedWorkoutList.length);
-    // forYouList.map((e) => print(e.title));
 
     return GestureDetector(
       onHorizontalDragEnd: swipeFunction,

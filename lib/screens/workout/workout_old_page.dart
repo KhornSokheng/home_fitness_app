@@ -73,7 +73,7 @@ class _WorkoutState extends State<Workout> {
           ),
         ),
         itemBuilder: (c, element) {
-          // TODO
+
           // wrap with a gestureDetector
           return Card(
             elevation: 8.0,
