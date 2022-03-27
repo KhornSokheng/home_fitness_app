@@ -4,20 +4,21 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:home_fitness/providers/google_sign_in.dart';
+import 'package:home_fitness/screens/Reg/Utils.dart';
 import 'package:home_fitness/screens/Reg/reg.dart';
 import 'package:home_fitness/screens/login/custom_clip_path.dart';
 import 'package:home_fitness/screens/menu/launcher.dart';
 import 'package:provider/provider.dart';
 import 'dart:ui' as ui;
 
-import '../Reg/Utils.dart';
+import '../login/login.dart';
 
-class LogIn extends StatefulWidget {
+class SignUp extends StatefulWidget {
   @override
-  State<LogIn> createState() => _LogInState();
+  State<SignUp> createState() => _SignUpState();
 }
 
-class _LogInState extends State<LogIn> {
+class _SignUpState extends State<SignUp> {
   final formKey = GlobalKey<FormState>();
 
   TextEditingController emailController = TextEditingController();
@@ -67,29 +68,29 @@ class _LogInState extends State<LogIn> {
             child: Container(
               decoration: BoxDecoration(
                   image: DecorationImage(
-                image: AssetImage('assets/login_logo.png'),
-                fit: BoxFit.cover,
-              )),
+                    image: AssetImage('assets/login_logo.png'),
+                    fit: BoxFit.cover,
+                  )),
               child: Padding(
                 padding: EdgeInsets.fromLTRB(leftPadding, 120, leftPadding, 50),
                 child: Container(
                   decoration: BoxDecoration(
-                      // border: Border.all(),
+                    // border: Border.all(),
                       color: Colors.orange[100],
                       borderRadius: BorderRadius.all(Radius.circular(20))
-                      // shape: BoxShape.circle
-                      ),
+                    // shape: BoxShape.circle
+                  ),
                   child: Column(
-                      // clipBehavior: Clip.antiAlias,
+                    // clipBehavior: Clip.antiAlias,
                       children: [
                         Container(
                           decoration: BoxDecoration(
-                              // border: Border.all(),
+                            // border: Border.all(),
                               color: Colors.orange[100],
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(20))
-                              // shape: BoxShape.circle
-                              ),
+                              BorderRadius.all(Radius.circular(20))
+                            // shape: BoxShape.circle
+                          ),
 
                           // decoration: BoxDecoration(
                           //     borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -166,34 +167,35 @@ class _LogInState extends State<LogIn> {
                                     // onPrimary: Colors.black,
                                     fixedSize: Size(180, 45),
                                   ),
-                                  label: Text("Log In"),
-                                  onPressed: signInEmailPassword,
-                                  icon: FaIcon(FontAwesomeIcons.signInAlt,
+                                  label: Text("Sign Up"),
+                                  onPressed: signUpEmailPassword,
+                                  icon: FaIcon(FontAwesomeIcons.arrowRight,
                                       color: Colors.white),
                                 ),
                               ),
 
-                              Container(
-                                  margin: EdgeInsets.symmetric(vertical: 10),
-                                  child: Text('OR')),
-
-                              ElevatedButton.icon(
-                                style: ElevatedButton.styleFrom(
-                                  primary: Colors.white,
-                                  onPrimary: Colors.black,
-                                  fixedSize: Size(180, 45),
-                                  // minimumSize: Size(50, 50),
-                                ),
-                                icon: FaIcon(FontAwesomeIcons.google,
-                                    color: Colors.red),
-                                label: Text('Log In with Google'),
-                                onPressed: () {
-                                  final provider =
-                                      Provider.of<GoogleSignInProvider>(context,
-                                          listen: false);
-                                  provider.googleLogin();
-                                },
-                              ),
+                              // Container(
+                              //     margin: EdgeInsets.symmetric(vertical: 10),
+                              //     child: Text('OR'),
+                              // ),
+                              //
+                              // ElevatedButton.icon(
+                              //   style: ElevatedButton.styleFrom(
+                              //     primary: Colors.white,
+                              //     onPrimary: Colors.black,
+                              //     fixedSize: Size(180, 45),
+                              //     // minimumSize: Size(50, 50),
+                              //   ),
+                              //   icon: FaIcon(FontAwesomeIcons.google,
+                              //       color: Colors.red),
+                              //   label: Text('Log In with Google'),
+                              //   onPressed: () {
+                              //     final provider =
+                              //     Provider.of<GoogleSignInProvider>(context,
+                              //         listen: false);
+                              //     provider.googleLogin();
+                              //   },
+                              // ),
 
                               SizedBox(
                                 height: 15,
@@ -201,12 +203,12 @@ class _LogInState extends State<LogIn> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text("Don't have an Account?",
+                                  Text("Already have an Account?",
                                       style: TextStyle(
-                                          // fontWeight: FontWeight.bold,
+                                        // fontWeight: FontWeight.bold,
                                           fontSize: 10)),
                                   TextButton(
-                                    child: Text("Sign Up",
+                                    child: Text("Log In",
                                         style: TextStyle(
                                           fontSize: 14,
                                           decoration: TextDecoration.underline,
@@ -214,8 +216,8 @@ class _LogInState extends State<LogIn> {
                                     onPressed: () {
                                       Navigator.push(context,
                                           MaterialPageRoute(builder: (context) {
-                                        return reg();
-                                      }));
+                                            return LogIn();
+                                          }));
                                     },
                                   ),
                                 ],
@@ -229,12 +231,12 @@ class _LogInState extends State<LogIn> {
                             height: 250,
                             // color: Colors.orange,
                             decoration: BoxDecoration(
-                                // border: Border.all(),
+                              // border: Border.all(),
                                 color: Colors.orange[100],
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(20))
-                                // shape: BoxShape.circle
-                                ),
+                                BorderRadius.all(Radius.circular(20))
+                              // shape: BoxShape.circle
+                            ),
 
                             child: CustomPaint(
                               painter: RPSCustomPainter(),
@@ -258,12 +260,12 @@ class _LogInState extends State<LogIn> {
     );
   }
 
-  Future signInEmailPassword() async {
+  Future signUpEmailPassword() async {
     final isValidFrom = formKey.currentState!.validate();
 
     if (isValidFrom) {
       try {
-        await FirebaseAuth.instance.signInWithEmailAndPassword(
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailController.text.trim(),
           password: passwordController.text.trim(),
         );
@@ -272,6 +274,7 @@ class _LogInState extends State<LogIn> {
 
         // display error message when sth when wrong with the email or password
         Utils.showSnackBar(e.message);
+
       }
     }
   }

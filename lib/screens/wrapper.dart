@@ -76,7 +76,7 @@ class LoginOrMenu extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (BuildContext context) {
-                        return loginreg();
+                        return LogIn();
                       }));
                     },
                     child: Text('Login Test')),

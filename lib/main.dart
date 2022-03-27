@@ -3,6 +3,8 @@ import 'package:home_fitness/providers/events_provider.dart';
 import 'package:home_fitness/providers/google_sign_in.dart';
 import 'package:home_fitness/providers/user_provider.dart';
 import 'package:home_fitness/providers/video_provider.dart';
+import 'package:home_fitness/screens/Reg/Utils.dart';
+import 'package:home_fitness/screens/Reg/Utils.dart';
 import 'package:home_fitness/screens/wrapper.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -45,6 +47,7 @@ class MyApp extends StatelessWidget {
 
       child: MaterialApp(
         title: 'Home Fitness',
+        scaffoldMessengerKey: messengerKey,
         theme: ThemeData(
 
           primarySwatch: Colors.blue,

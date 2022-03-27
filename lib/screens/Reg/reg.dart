@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:home_fitness/screens/Reg/get_info.dart';
+import 'package:home_fitness/screens/Reg/sign_up.dart';
 import 'package:home_fitness/screens/login/login.dart';
 
 class reg extends StatelessWidget {
@@ -59,7 +60,18 @@ class reg extends StatelessWidget {
                   }));
                 },
                 child: Text(
-                  'Sign Up',
+                  'Sign Up(JR)',
+                ),
+              ),
+              SizedBox(height: 50,),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return SignUp();
+                  }));
+                },
+                child: Text(
+                  'Sign Up(Nont)',
                 ),
               ),
 

@@ -126,7 +126,7 @@ class _AdminReportState extends State<AdminReport> {
 
                   setState(() {
 
-                    // TODO
+
                     // insert to collection 'videos'
                     insertNewVideo(new_video: new_video);
 

@@ -128,17 +128,6 @@ class User {
   void logout() {}
 
   Future<void> getUser() async {
-    // var url = Uri.parse('https://example.com/whatsit/create');
-    // var response = await http.post(url, body: {'name': 'doodle', 'color': 'blue'});
-    // print('Response status: ${response.statusCode}');
-    // print('Response body: ${response.body}');
 
-    // http.Response response = await http.get(Uri.parse('localhost:5000/getCustomer'));
-    //
-    // Map data = jsonDecode(response.body);
-    // print(data);
-    //
-    // print('hello world');
-    // print(await http.read(Uri.parse('http://worldtimeapi.org/api/timezone/Europe/madrid')));
   }
 }
