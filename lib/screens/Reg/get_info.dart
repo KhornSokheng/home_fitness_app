@@ -10,6 +10,7 @@ class GetInfo extends StatefulWidget {
 
 class _GetInfoState extends State<GetInfo> {
   bool _isSelected = false;
+  List<String> level = ['few', 'normal', 'very'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
