@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:home_fitness/screens/Reg/get_info.dart';
 import 'package:home_fitness/screens/achievement/achievement.dart';
 import 'package:home_fitness/screens/admin/admin_report.dart';
 import 'package:home_fitness/screens/home/home.dart';
@@ -104,10 +105,10 @@ class LoginOrMenu extends StatelessWidget {
                       // });
                       Navigator.push(context,
                           MaterialPageRoute(builder: (BuildContext context) {
-                        return AdminReport();
+                        return GetInfo();
                       }));
                     },
-                    child: Text('Log in as Admin'))
+                    child: Text('Get Info'))
               ],
             ),
           );

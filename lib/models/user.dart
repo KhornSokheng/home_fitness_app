@@ -11,8 +11,8 @@ class User {
   String password;
   DateTime? dateOfBirth = DateTime(2000, 1, 1);
   String? role = 'normal_user'; // either normal_user or admin???
-  int minute_play = 100;
-  int num_workout = 5;
+  int minute_play = 60;
+  int num_workout = 12;
   String? user_type = 'normal'; //either normal or pro
   double height; // height in cm
   double weight; // weight in kg

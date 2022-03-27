@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:home_fitness/models/milestone.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:home_fitness/providers/user_provider.dart';
 import 'package:home_fitness/screens/achievement/color_filters.dart';
+import 'package:provider/provider.dart';
+
+import '../../models/user.dart';
 
 class MilestoneCard extends StatefulWidget {
   // const MilestoneCard({Key? key}) : super(key: key);
@@ -21,6 +25,17 @@ class MilestoneCard extends StatefulWidget {
 class _MilestoneCardState extends State<MilestoneCard> {
   @override
   Widget build(BuildContext context) {
+
+    User user = Provider.of<UserProvider>(context).user;
+
+    if(widget.milestone.name == 'Workouts' && user.num_workout>= widget.milestone.value!){
+      widget.milestone.reached = true;
+    }else if(widget.milestone.name == 'Minutes' && user.minute_play>= widget.milestone.value!){
+      widget.milestone.reached = true;
+    }else{
+        widget.milestone.reached = false;
+    }
+
     return Flexible(
       child: Card(
         shadowColor: Colors.orange,

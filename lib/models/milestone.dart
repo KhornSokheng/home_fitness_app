@@ -12,7 +12,7 @@ class Milestone{
     required this.unit,
     required this.value,
     required this.image_url,
-    this.reached = true,
+    this.reached = false,
 
 
   });
