@@ -1,8 +1,11 @@
 import 'dart:async';
+// import 'dart:ffi';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:home_fitness/screens/Reg/get_info.dart';
+import 'package:home_fitness/screens/Reg/sign_up.dart';
 import 'package:home_fitness/screens/achievement/achievement.dart';
 import 'package:home_fitness/screens/admin/admin_report.dart';
 import 'package:home_fitness/screens/home/home.dart';
@@ -25,48 +28,67 @@ class Wrapper extends StatelessWidget {
 }
 
 class LoginOrMenu extends StatelessWidget {
-
-
   Widget build(BuildContext context) {
+    late fitness_user.User userInDB;
+    var my_snapshot;
 
+    Future readUserDB(String docId) async {
+      /// Get single document by ID
+      final docUser = FirebaseFirestore.instance.collection('users').doc(docId);
+      final snapshot = await docUser.get();
+      print(snapshot.data() as Map<String, dynamic>);
+      print(snapshot.exists );
+
+      try {
+        if (snapshot.exists) {
+          my_snapshot = snapshot.data();
+          print(my_snapshot);
+          userInDB = fitness_user.User.fromJson(snapshot.data() as Map<String, dynamic>);
+          print(snapshot.data());
+          // print(userInDB);
+          print(userInDB.email);
+          // return fitness_user.User.fromJson(snapshot.data()!);
+
+        } else {
+          // userInDB = null;
+        }
+      }catch(e){
+        print('Error Fetching user from DB');
+      }
+    }
 
     return StreamBuilder(
         stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) {
-
+        builder: (context, snapshot)  {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
           } else if (snapshot.hasData) {
-            final google_user = FirebaseAuth.instance.currentUser!;
-            print(google_user);
+            final googleUser = FirebaseAuth.instance.currentUser!;
+            print(googleUser);
 
             // TODO
             // when database created,
             //need to fetch data from the database before setup to local provider
 
-            // Provider.of<UserProvider>(context, listen: false).updateUser(
-            //   fitness_user.User(
-            //     id: 'Test ID',
-            //     username: google_user.displayName!,
-            //     profile_img_url: google_user.photoURL!,
-            //     email: google_user.email!,
-            //     role: 'admin',
-            //       interest: ['Yoga','Muscle','Running']
-            //
-            //   )
-            // );
-            // Future.delayed(Duration(seconds: 5 ));
 
-            // Navigator.push(context,
-            // MaterialPageRoute(builder: (BuildContext context) {
-            // return Launcher();}));
-            return Launcher();
-            // return LoggedInWidget();
+            // readUserDB(googleUser.email!);
+            // Future.delayed(Duration(seconds: 60));
+            //
+            // if (userInDB.email == null) {
+            //   return GetInfo(email: googleUser.email!);
+            // } else {
+            //
+            //   Provider.of<UserProvider>(context, listen: false)
+            //       .updateUser(userInDB);
+            //   return Launcher();
+            // }
+
+            return Launcher( docId: googleUser.email!);
+
           } else if (snapshot.hasError) {
             return Center(child: Text('Something Went Wrong!'));
           } else {
             return LogIn();
-
           }
 
           // return Center(
@@ -115,9 +137,6 @@ class LoginOrMenu extends StatelessWidget {
           //     ],
           //   ),
           // );
-
-
-
         });
   }
 }

@@ -159,6 +159,7 @@ class _GetInfoState extends State<GetInfo> {
                     ),
 
                     TextFormField(
+                      maxLength: 10,
                       validator: (value) {
                         print('val $value');
                         if (value == null ||
@@ -171,7 +172,7 @@ class _GetInfoState extends State<GetInfo> {
                       },
                       decoration: InputDecoration(
                           contentPadding: EdgeInsets.all(10),
-                          hintText: '066 234 4567',
+                          hintText: '0662344567',
                           labelText: 'Phone Number'),
                       autofocus: true,
                       controller: phoneController,
@@ -356,7 +357,8 @@ class _GetInfoState extends State<GetInfo> {
         username: usernameController.text,
         email: widget.email,
         // password: widget.password, // password should not keep in user, bc it handles by authenticaton alr
-        id: 'ID', // id will change later when referenced to the database
+        // id: 'ID', // id will change later when referenced to the database
+        id: widget.email, // use the email as the id of the document
         interest: interest,
         dateOfBirth: birthday,
         gender: gender!,
@@ -370,9 +372,9 @@ class _GetInfoState extends State<GetInfo> {
       try{
         // insert new user to the document
         /// Reference to user document
-        final docUser = FirebaseFirestore.instance.collection('users').doc() ;
+        final docUser = FirebaseFirestore.instance.collection('users').doc(user.id) ;
 
-        user.id = docUser.id;
+        // user.id = docUser.id;
 
         /// Create document and write data to Firebase
         await docUser.set(user.toJson());
@@ -384,6 +386,7 @@ class _GetInfoState extends State<GetInfo> {
         Navigator.push(myBuildContext,
             MaterialPageRoute(builder: (context) {
               return Launcher(
+                docId: user.id,
 
               );
             }));

@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:http/http.dart' as http;
 
 class User {
   String id;
   String username;
   String email;
-  // String last_name;
   String password;
   DateTime? dateOfBirth = DateTime(2000, 1, 1);
   String? role = 'normal_user'; // either normal_user or admin???
@@ -34,7 +34,7 @@ class User {
     this.password = 'password',
     this.gender = 'Male',
     this.role = 'normal_user',
-    this.phoneNum = '(66) 205-9099',
+    this.phoneNum = '0932059099',
     this.user_type = 'normal',
     this.height = 175,
     this.weight = 75,
@@ -47,6 +47,8 @@ class User {
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4Y2LJnaCmGkiNXrQ9BDNoWPljvdLT1308iw&usqp=CAU',
     required this.interest,
     this.level = 'Beginner',
+    this.minute_play = 0,
+    this.num_workout = 0
   });
 
   // to json method
@@ -84,9 +86,10 @@ class User {
         user_type: json['user_type'],
         height: json['height'],
         weight: json['weight'],
-        dateOfBirth: json['dateOfBirth'],
+        dateOfBirth:(json['dateOfBirth'] as Timestamp).toDate(),
         profile_img_url: json['profile_img_url'],
-        interest: json['interest'],
+        interest: json['interest'].cast<String>(),
+        // interest: ['Yoga'],
         level: json['level'],
         calories_burn: json['calories_burn'],
         step: json['step'],
