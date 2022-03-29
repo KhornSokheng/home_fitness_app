@@ -44,17 +44,17 @@ class LoginOrMenu extends StatelessWidget {
             // when database created,
             //need to fetch data from the database before setup to local provider
 
-            Provider.of<UserProvider>(context, listen: false).updateUser(
-              fitness_user.User(
-                id: 3,
-                username: google_user.displayName!,
-                profile_img_url: google_user.photoURL!,
-                email: google_user.email!,
-                role: 'admin',
-                  interest: ['Yoga','Muscle','Running']
-
-              )
-            );
+            // Provider.of<UserProvider>(context, listen: false).updateUser(
+            //   fitness_user.User(
+            //     id: 'Test ID',
+            //     username: google_user.displayName!,
+            //     profile_img_url: google_user.photoURL!,
+            //     email: google_user.email!,
+            //     role: 'admin',
+            //       interest: ['Yoga','Muscle','Running']
+            //
+            //   )
+            // );
             // Future.delayed(Duration(seconds: 5 ));
 
             // Navigator.push(context,
@@ -65,53 +65,56 @@ class LoginOrMenu extends StatelessWidget {
           } else if (snapshot.hasError) {
             return Center(child: Text('Something Went Wrong!'));
           } else {
-            // return loginreg();
+            return LogIn();
 
           }
 
-          return Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (BuildContext context) {
-                        return LogIn();
-                      }));
-                    },
-                    child: Text('Login Test')),
-                SizedBox(
-                  width: 100,
-                ),
-                ElevatedButton(
-                    onPressed: () {
-                      // MaterialPageRoute(builder: (BuildContext context) {
-                      //   return Launcher();
-                      // });
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (BuildContext context) {
-                        return Launcher();
-                      }));
-                    },
-                    child: Text('Go to Menu')),
-                SizedBox(
-                  width: 100,
-                ),
-                ElevatedButton(
-                    onPressed: () {
-                      // MaterialPageRoute(builder: (BuildContext context) {
-                      //   return Launcher();
-                      // });
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (BuildContext context) {
-                        return GetInfo();
-                      }));
-                    },
-                    child: Text('Get Info'))
-              ],
-            ),
-          );
+          // return Center(
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.center,
+          //     children: [
+          //       ElevatedButton(
+          //           onPressed: () {
+          //             Navigator.push(context,
+          //                 MaterialPageRoute(builder: (BuildContext context) {
+          //               return LogIn();
+          //             }));
+          //           },
+          //           child: Text('Login Test')),
+          //       SizedBox(
+          //         width: 100,
+          //       ),
+          //       ElevatedButton(
+          //           onPressed: () {
+          //             // MaterialPageRoute(builder: (BuildContext context) {
+          //             //   return Launcher();
+          //             // });
+          //             Navigator.push(context,
+          //                 MaterialPageRoute(builder: (BuildContext context) {
+          //               return Launcher();
+          //             }));
+          //           },
+          //           child: Text('Go to Menu')),
+          //       SizedBox(
+          //         width: 100,
+          //       ),
+          //       ElevatedButton(
+          //           onPressed: () {
+          //             // MaterialPageRoute(builder: (BuildContext context) {
+          //             //   return Launcher();
+          //             // });
+          //             Navigator.push(context,
+          //                 MaterialPageRoute(builder: (BuildContext context) {
+          //               return GetInfo(
+          //                 email: 'exam@go.com',
+          //                 // password: '123456',
+          //               );
+          //             }));
+          //           },
+          //           child: Text('Get Info'))
+          //     ],
+          //   ),
+          // );
 
 
 

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:home_fitness/providers/google_sign_in.dart';
 import 'package:home_fitness/screens/Reg/reg.dart';
+import 'package:home_fitness/screens/Reg/sign_up.dart';
 import 'package:home_fitness/screens/login/custom_clip_path.dart';
 import 'package:home_fitness/screens/menu/launcher.dart';
 import 'package:provider/provider.dart';
@@ -106,7 +107,7 @@ class _LogInState extends State<LogIn> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             // mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              AutoSizeText('Home Fitness',
+                              AutoSizeText('Home Fitness - Log In',
                                 maxLines: 2,
                                 maxFontSize: 30,
                                 style: TextStyle(
@@ -214,7 +215,7 @@ class _LogInState extends State<LogIn> {
                                     onPressed: () {
                                       Navigator.push(context,
                                           MaterialPageRoute(builder: (context) {
-                                        return reg();
+                                        return SignUp();
                                       }));
                                     },
                                   ),

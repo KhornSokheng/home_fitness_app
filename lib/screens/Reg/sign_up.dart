@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:home_fitness/providers/google_sign_in.dart';
 import 'package:home_fitness/screens/Reg/Utils.dart';
+import 'package:home_fitness/screens/Reg/get_info.dart';
 import 'package:home_fitness/screens/Reg/reg.dart';
 import 'package:home_fitness/screens/login/custom_clip_path.dart';
 import 'package:home_fitness/screens/menu/launcher.dart';
@@ -107,7 +108,7 @@ class _SignUpState extends State<SignUp> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             // mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              AutoSizeText('Home Fitness',
+                              AutoSizeText('Home Fitness - Sign Up',
                                 maxLines: 2,
                                 maxFontSize: 30,
                                 style: TextStyle(
@@ -173,29 +174,6 @@ class _SignUpState extends State<SignUp> {
                                       color: Colors.white),
                                 ),
                               ),
-
-                              // Container(
-                              //     margin: EdgeInsets.symmetric(vertical: 10),
-                              //     child: Text('OR'),
-                              // ),
-                              //
-                              // ElevatedButton.icon(
-                              //   style: ElevatedButton.styleFrom(
-                              //     primary: Colors.white,
-                              //     onPrimary: Colors.black,
-                              //     fixedSize: Size(180, 45),
-                              //     // minimumSize: Size(50, 50),
-                              //   ),
-                              //   icon: FaIcon(FontAwesomeIcons.google,
-                              //       color: Colors.red),
-                              //   label: Text('Log In with Google'),
-                              //   onPressed: () {
-                              //     final provider =
-                              //     Provider.of<GoogleSignInProvider>(context,
-                              //         listen: false);
-                              //     provider.googleLogin();
-                              //   },
-                              // ),
 
                               SizedBox(
                                 height: 15,
@@ -269,6 +247,15 @@ class _SignUpState extends State<SignUp> {
           email: emailController.text.trim(),
           password: passwordController.text.trim(),
         );
+
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) {
+              return GetInfo(
+                email: emailController.text.trim(),
+                // password: passwordController.text.trim(),
+              );
+            }));
+
       }on FirebaseAuthException catch (e){
         print(e);
 

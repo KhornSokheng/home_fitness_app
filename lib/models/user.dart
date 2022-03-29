@@ -4,7 +4,7 @@ import 'dart:math';
 import 'package:http/http.dart' as http;
 
 class User {
-  final int id;
+  String id;
   String username;
   String email;
   // String last_name;
@@ -19,7 +19,7 @@ class User {
   String gender;
   int? heartRate;
   int? step;
-  int? calories_burn = 1100;
+  int? calories_burn;
   double? distance_walk; // in KM
   String profile_img_url;
   String phoneNum;
@@ -33,13 +33,13 @@ class User {
     // required this.last_name,
     this.password = 'password',
     this.gender = 'Male',
-    this.role,
+    this.role = 'normal_user',
     this.phoneNum = '(66) 205-9099',
-    this.user_type,
+    this.user_type = 'normal',
     this.height = 175,
     this.weight = 75,
     this.dateOfBirth,
-    this.calories_burn,
+    this.calories_burn = 1100,
     this.heartRate = 95,
     this.step = 1980,
     this.distance_walk = 2,
@@ -55,7 +55,7 @@ class User {
       'id': id,
       'username': username,
       'email': email,
-      'password': password,
+      // 'password': password,
       'gender': gender,
       'role': role,
       'phoneNum': phoneNum,
@@ -77,7 +77,7 @@ class User {
         id: json['id'],
         username: json['username'],
         email: json['email'],
-        password: json['password'],
+        // password: json['password'],
         gender: json['gender'],
         role: json['role'],
         phoneNum: json['phoneNum'],

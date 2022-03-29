@@ -108,8 +108,8 @@ class _ProfileState extends State<Profile> {
                 buildUserInfoDisplay(
                     user.phoneNum, 'Phone', EditPhoneFormPage(), true),
 
-                buildUserInfoDisplay(
-                    user.password, 'Password', EditPasswordFormPage(), true),
+                // buildUserInfoDisplay(
+                //     user.password, 'Password', EditPasswordFormPage(), true),
                 buildUserInfoDisplay(user.get_obesity_status(), 'BMI Status',
                     EditNameFormPage(), false),
                 buildUserInfoDisplay(user.height.toString(), 'Height(cm)',

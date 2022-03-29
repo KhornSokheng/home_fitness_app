@@ -53,16 +53,16 @@ class reg extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return GetInfo();
-                  }));
-                },
-                child: Text(
-                  'Sign Up(JR)',
-                ),
-              ),
+              // ElevatedButton(
+              //   onPressed: () {
+              //     Navigator.push(context, MaterialPageRoute(builder: (context) {
+              //       return GetInfo();
+              //     }));
+              //   },
+              //   child: Text(
+              //     'Sign Up(JR)',
+              //   ),
+              // ),
               SizedBox(height: 50,),
               ElevatedButton(
                 onPressed: () {

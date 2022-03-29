@@ -3,7 +3,7 @@ import 'package:home_fitness/models/user.dart';
 
 class UserProvider extends ChangeNotifier {
   User user = User(
-    id: 1,
+    id: 'Test ID',
     username: 'Sabay Dee',
     role: 'admin',
     gender: 'Male',
@@ -13,7 +13,7 @@ class UserProvider extends ChangeNotifier {
   );
 
   final User defaultUser = User(
-    id: 999,
+    id: 'Test ID',
     username: 'Default User',
     role: 'admin',
     gender: 'Male',
