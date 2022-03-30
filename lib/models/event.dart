@@ -3,11 +3,15 @@ class Event{
   DateTime date;
   String status = 'new'; // either new or done
   // Video workout;
+  String id;
+  String user_id;
 
   Event({
     required this.name,
     required this.date,
-    required this.status
+    required this.status,
+    this.id = 'notificationId',
+    this.user_id = 'userId'
   });
 
   void addEvent(name, date){

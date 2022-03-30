@@ -1,4 +1,5 @@
 import 'package:badges/badges.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:home_fitness/models/event.dart';
 import 'package:home_fitness/models/user.dart';
@@ -37,6 +38,18 @@ class _NotificationsState extends State<Notifications> {
             builder: (BuildContext context) => AddEvent(),
           );
           if (newEvent == null || newEvent.name.isEmpty || newEvent.date == null) return;
+
+          //update notification
+          final docNotification = FirebaseFirestore.instance.collection('notifications').doc();
+          newEvent.id = docNotification.id;
+          newEvent.user_id = user.id;
+          docNotification.set({
+            'id': newEvent.id,
+            'user_id': user.id,
+            'name': newEvent.name,
+            'date': newEvent.date,
+            'status': newEvent.status
+          });
 
           setState(() {
             // this.newEvent = newEvent;
@@ -106,6 +119,14 @@ class _NotificationsState extends State<Notifications> {
                   markDone: (){
                     setState(() {
                       event.markDone();
+
+                      //update as done
+                      final docNotification = FirebaseFirestore.instance.collection('notifications').doc(event.id);
+
+                      docNotification.update({
+
+                        'status': event.status
+                      });
 
                     });
                   }

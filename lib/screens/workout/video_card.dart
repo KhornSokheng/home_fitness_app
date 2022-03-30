@@ -98,16 +98,17 @@ class VideoCard extends StatelessWidget {
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         AutoSizeText(
           title,
           style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
           maxLines: 1,
         ),
-        SizedBox(height: 50),
-        Text(type),
+        // SizedBox(height: 50),
+        Text('Type: $type'),
         Text('$level : $minutes Mins'),
+        Text('Burn: ${video.caloriesBurn} Cal')
       ],
     );
   }
