@@ -129,7 +129,7 @@ class User {
   void generateData() {
     this.step = Random().nextInt(2000) + 2000;
     this.heartRate = Random().nextInt(40) + 80;
-    this.calories_burn = Random().nextInt(500) + 1000;
+    // this.calories_burn = Random().nextInt(500) + 1000;
     this.distance_walk = (this.step! / 1300);
   }
 

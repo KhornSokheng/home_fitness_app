@@ -82,7 +82,7 @@ class _AchievementState extends State<Achievement> {
               // color: Colors.white,
               padding: EdgeInsets.all(5),
               child: const AutoSizeText(
-                  'Daily Activities',
+                  'Activities',
                 style: TextStyle(
                   color: Colors.black54,
                   fontSize: 20,

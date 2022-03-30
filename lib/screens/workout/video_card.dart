@@ -57,6 +57,15 @@ class VideoCard extends StatelessWidget {
           'numView':video.numView
         });
 
+        //update watch_history
+        final docHistory = FirebaseFirestore.instance.collection('watch_history').doc();
+        docHistory.set({
+          'id':docHistory.id,
+          'user_id': user.id,
+          'video_id': video.id,
+          'date': DateTime.now()
+        });
+
 
 
         return VideoDisplay(
