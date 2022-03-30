@@ -1,9 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:home_fitness/models/user.dart';
+import 'package:home_fitness/providers/user_provider.dart';
+import 'package:home_fitness/screens/menu/launcher.dart';
 
 import 'package:in_app_purchases_paywall_ui/in_app_purchases_paywall_ui.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:in_app_purchases_intl/in_app_purchases_intl.dart';
+import 'package:provider/provider.dart';
 
 class Purchase extends StatefulWidget {
   const Purchase({Key? key}) : super(key: key);
@@ -18,12 +23,15 @@ class _PurchaseState extends State<Purchase> {
   @override
   Widget build(BuildContext context) {
     final translations = PaywallL10NHelper.of(context);
+
+    User user = Provider.of<UserProvider>(context).user;
+
     return Center(
       child: PaywallScaffold(
         // set a theme
         theme: Theme.of(context),
         // appBarTitle for scaffold
-        appBarTitle: "YourApp Premium",
+        appBarTitle: "Home Fitness Premium",
         child: MoritzPaywall(
             // set a theme
             // theme: Theme.of(context),
@@ -48,18 +56,18 @@ class _PurchaseState extends State<Purchase> {
             bulletPoints: [
               IconAndText(Icons.stop_screen_share_outlined, "No Ads"),
               IconAndText(Icons.hd, "Premium HD"),
-              IconAndText(Icons.sort, "Access to All Premium Articles")
+              IconAndText(Icons.sort, "Access to All Premium Workouts")
             ],
             // Your subscriptions that you want to offer to the user
             subscriptionListData: [
               SubscriptionData(
                   durationTitle: translations.yearly.toTitleCase(),
                   durationShort: translations.nmonth(12),
-                  price: "€14,99€",
+                  price: "\$14,99",
                   highlightText: "Most popular",
                   dealPercentage: 59,
                   productDetails: "Dynamic purchase data",
-                  currencySymbol: "€",
+                  currencySymbol: "\$",
                   rawPrice: 14.99,
                   monthText: translations.month,
                   duration: "P1Y",
@@ -67,10 +75,10 @@ class _PurchaseState extends State<Purchase> {
               SubscriptionData(
                   durationTitle: translations.quarterly.toTitleCase(),
                   durationShort: translations.nmonth(3),
-                  price: "€8,99",
+                  price: "\$8,99",
                   dealPercentage: 42,
                   productDetails: "Dynamic purchase data",
-                  currencySymbol: "€",
+                  currencySymbol: "\$",
                   rawPrice: 8.99,
                   monthText: translations.month,
                   duration: "P3M",
@@ -78,10 +86,10 @@ class _PurchaseState extends State<Purchase> {
               SubscriptionData(
                   durationTitle: translations.monthly.toTitleCase(),
                   durationShort: translations.nmonth(1),
-                  price: "€2,99",
+                  price: "\$2,99",
                   dealPercentage: 0,
                   productDetails: "Dynamic purchase data",
-                  currencySymbol: "€",
+                  currencySymbol: "\$",
                   rawPrice: 2.99,
                   monthText: translations.month,
                   duration: "P1M",
@@ -97,9 +105,30 @@ class _PurchaseState extends State<Purchase> {
                 child:
                     Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                   ElevatedButton(
-                    child: Text("Let's go!"),
+                    child: Text("Confirm Payment"),
                     onPressed: () {
                       print("let‘s go to the home widget again");
+
+                      //update watch_history
+                      final docUser = FirebaseFirestore.instance.collection('users').doc(user.id);
+                      docUser.update({
+                        'user_type': 'pro',
+
+                      });
+
+                      //update watch_history
+                      final docPayment = FirebaseFirestore.instance.collection('payments').doc(user.id);
+                      docPayment.set({
+                        'id': docPayment.id,
+                        'user_id': user.id,
+                        'date': DateTime.now()
+
+                      });
+
+                      Navigator.push(context, MaterialPageRoute(builder: (context) {
+                        return Launcher(docId: user.email);
+                      }));
+
                     },
                   )
                 ])),
