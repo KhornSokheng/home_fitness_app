@@ -37,7 +37,7 @@ class _ProfileState extends State<Profile> {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         leading: Visibility(
-          // visible: user.role=='admin',
+          visible: user.role=='admin',
           child: IconButton(
             tooltip: 'admin report',
             // Use the FaIcon Widget + FontAwesomeIcons class for the IconData

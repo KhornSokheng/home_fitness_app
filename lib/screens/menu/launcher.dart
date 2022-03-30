@@ -88,13 +88,14 @@ class _LauncherState extends State<Launcher> {
           return Text('Someting Went wrong! ${snapshot.error}');
         } else if (snapshot.hasData) {
           final user = snapshot.data;
-          // return user == null ? GetInfo(email: widget.docId) : buildScaffold(context, user);
-          return buildScaffold(context, user);
+          return user == null ? GetInfo(email: widget.docId) : buildScaffold(context, user);
+          // return buildScaffold(context, user);
         } else {
-          return  GetInfo(email: widget.docId);
-          // return Center(
-          //   child: CircularProgressIndicator(),
-          // );
+
+          // return  GetInfo(email: widget.docId);
+          return Center(
+            child: CircularProgressIndicator(),
+          );
         }
       },
     );

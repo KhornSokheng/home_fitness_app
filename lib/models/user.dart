@@ -19,7 +19,7 @@ class User {
   String gender;
   int? heartRate;
   int? step;
-  int? calories_burn;
+  int calories_burn;
   double? distance_walk; // in KM
   String profile_img_url;
   String phoneNum;
@@ -71,6 +71,9 @@ class User {
       'calories_burn': calories_burn,
       'step': step,
       'distance_walk': distance_walk,
+      'num_workout': num_workout,
+      'minute_play': minute_play
+
     };
   }
 
@@ -94,6 +97,8 @@ class User {
         calories_burn: json['calories_burn'],
         step: json['step'],
         distance_walk: json['distance_walk'],
+      num_workout: json['num_workout'],
+      minute_play: json['minute_play']
       );
 
   String getVieoLevel() {

@@ -25,7 +25,10 @@ class _AchievementState extends State<Achievement> {
 
     List<Activity> activityList = [
       Activity(
-          name: 'Heart Rate', unit: 'bpm',value: user.heartRate.toString(),image_url: 'assets/heart1.png'
+          name: 'No. Workouts', unit: 'videos',value: user.num_workout.toString(),image_url: 'assets/num_workout3.png'
+      ),
+      Activity(
+          name: 'No. Minutes', unit: 'mns',value: user.minute_play.toString(),image_url: 'assets/minute3.png'
       ),
       Activity(
           name: 'Steps',unit: 'steps',value: user.step.toString(),
