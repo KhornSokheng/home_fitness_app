@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:home_fitness/screens/Reg/get_info.dart';
-import 'package:home_fitness/screens/Reg/sign_up.dart';
+// import 'package:home_fitness/screens/Reg/get_info.dart';
+// import 'package:home_fitness/screens/Reg/sign_up.dart';
 import 'package:home_fitness/screens/login/login.dart';
+import 'package:home_fitness/screens/sign_up/sign_up.dart';
 
 class reg extends StatelessWidget {
   const reg({Key? key}) : super(key: key);

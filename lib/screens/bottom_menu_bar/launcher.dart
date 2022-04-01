@@ -5,14 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:home_fitness/models/user.dart';
 import 'package:home_fitness/providers/user_provider.dart';
-import 'package:home_fitness/screens/Reg/get_info.dart';
-import 'package:home_fitness/screens/Reg/sign_up.dart';
+// import 'package:home_fitness/screens/Reg/get_info.dart';
+// import 'package:home_fitness/screens/Reg/sign_up.dart';
 import 'package:home_fitness/screens/achievement/achievement.dart';
 import 'package:home_fitness/screens/home/home.dart';
 import 'package:home_fitness/screens/notification/notification.dart';
 import 'package:home_fitness/screens/profile/profile.dart';
 import 'package:home_fitness/screens/workout/workout.dart';
 import 'package:provider/provider.dart';
+
+import '../sign_up/get_info.dart';
 
 class Launcher extends StatefulWidget {
   // const Launcher({Key? key}) : super(key: key);

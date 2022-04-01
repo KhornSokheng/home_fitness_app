@@ -4,14 +4,16 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:home_fitness/providers/google_sign_in.dart';
-import 'package:home_fitness/screens/Reg/reg.dart';
-import 'package:home_fitness/screens/Reg/sign_up.dart';
+// import 'package:home_fitness/screens/Reg/reg.dart';
+// import 'package:home_fitness/screens/Reg/sign_up.dart';
 import 'package:home_fitness/screens/login/custom_clip_path.dart';
 import 'package:home_fitness/screens/bottom_menu_bar/launcher.dart';
 import 'package:provider/provider.dart';
 import 'dart:ui' as ui;
 
-import '../Reg/Utils.dart';
+// import '../Reg/Utils.dart';
+import '../sign_up/Utils.dart';
+import '../sign_up/sign_up.dart';
 
 class LogIn extends StatefulWidget {
   @override
