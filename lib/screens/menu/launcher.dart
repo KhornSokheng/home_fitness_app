@@ -65,8 +65,6 @@ class _LauncherState extends State<Launcher> {
 
   @override
   Widget build(BuildContext context) {
-
-
     Future<User?> readUserDB(String docId) async {
       /// Get single document by ID
       final docUser = FirebaseFirestore.instance.collection('users').doc(docId);
@@ -88,22 +86,22 @@ class _LauncherState extends State<Launcher> {
           return Text('Someting Went wrong! ${snapshot.error}');
         } else if (snapshot.hasData) {
           final user = snapshot.data;
-          return user == null ? GetInfo(email: widget.docId) : buildScaffold(context, user);
+          return user == null
+              ? GetInfo(email: widget.docId)
+              : buildScaffold(context, user);
           // return buildScaffold(context, user);
         } else {
-
-          // return  GetInfo(email: widget.docId);
-          return Center(
-            child: CircularProgressIndicator(),
-          );
+          return GetInfo(email: widget.docId);
+          //return Center(
+          // child: CircularProgressIndicator(),
+          // );
         }
       },
     );
   }
 
   Widget buildScaffold(BuildContext context, User user) {
-
-    Provider.of<UserProvider>(context,listen:false).updateUser(user);
+    Provider.of<UserProvider>(context, listen: false).updateUser(user);
 
     return Scaffold(
       extendBody: true,
