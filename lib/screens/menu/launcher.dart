@@ -92,10 +92,10 @@ class _LauncherState extends State<Launcher> {
           // return buildScaffold(context, user);
         } else {
 
-          // return  GetInfo(email: widget.docId);
-          return Center(
-            child: CircularProgressIndicator(),
-          );
+          return  GetInfo(email: widget.docId);
+          // return Center(
+          //   child: CircularProgressIndicator(),
+          // );
         }
       },
     );
