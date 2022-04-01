@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:string_validator/string_validator.dart';
 import 'package:home_fitness/models/userdataprofile.dart';
-import 'package:home_fitness/widgets/appbar_widget.dart';
+import 'package:home_fitness/screens/profile/widgets/appbar_widget.dart';
 
 import '../../models/user.dart';
 import '../../providers/user_provider.dart';

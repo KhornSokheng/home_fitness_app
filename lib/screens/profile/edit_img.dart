@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 
-import 'package:home_fitness/widgets/appbar_widget.dart';
+import 'package:home_fitness/screens/profile/widgets/appbar_widget.dart';
 import 'package:home_fitness/models/userdataprofile.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:image_picker/image_picker.dart';

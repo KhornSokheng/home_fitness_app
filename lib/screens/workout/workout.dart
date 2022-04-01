@@ -11,7 +11,6 @@ import 'package:home_fitness/providers/video_provider.dart';
 import 'package:home_fitness/screens/workout/video_card.dart';
 import 'package:provider/provider.dart';
 
-import '../../data/workout_videos.dart';
 import '../../models/user.dart';
 import '../../models/workout_list.dart';
 

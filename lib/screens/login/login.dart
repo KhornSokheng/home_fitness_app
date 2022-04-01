@@ -7,7 +7,7 @@ import 'package:home_fitness/providers/google_sign_in.dart';
 import 'package:home_fitness/screens/Reg/reg.dart';
 import 'package:home_fitness/screens/Reg/sign_up.dart';
 import 'package:home_fitness/screens/login/custom_clip_path.dart';
-import 'package:home_fitness/screens/menu/launcher.dart';
+import 'package:home_fitness/screens/bottom_menu_bar/launcher.dart';
 import 'package:provider/provider.dart';
 import 'dart:ui' as ui;
 

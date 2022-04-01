@@ -10,12 +10,13 @@ import 'package:home_fitness/screens/achievement/achievement.dart';
 import 'package:home_fitness/screens/admin/admin_report.dart';
 import 'package:home_fitness/screens/home/home.dart';
 import 'package:home_fitness/screens/login/login.dart';
-import 'package:home_fitness/screens/menu/launcher.dart';
 import 'package:home_fitness/screens/notification/notification.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/user_provider.dart';
 import 'package:home_fitness/models/user.dart' as fitness_user;
+
+import 'bottom_menu_bar/launcher.dart';
 
 class Wrapper extends StatelessWidget {
   const Wrapper({Key? key}) : super(key: key);

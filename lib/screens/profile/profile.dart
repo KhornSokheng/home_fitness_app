@@ -7,7 +7,7 @@ import 'package:home_fitness/models/userdataprofile.dart';
 import 'package:home_fitness/providers/google_sign_in.dart';
 import 'package:home_fitness/providers/user_provider.dart';
 import 'package:home_fitness/screens/profile/edit_password.dart';
-import 'package:home_fitness/widgets/display_image_widget.dart';
+import 'package:home_fitness/screens/profile/widgets/appbar_widget.dart';
 
 import 'package:home_fitness/screens/profile/edit_desc.dart';
 import 'package:home_fitness/screens/profile/edit_name.dart';
@@ -18,6 +18,8 @@ import 'package:home_fitness/screens/profile/edit_phone.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+// import '../../widgets/display_image_widget.dart';
+import 'package:home_fitness/screens/profile/widgets/display_image_widget.dart';
 import '../admin/admin_report.dart';
 //import 'package:flutter/cupertino.dart';
 

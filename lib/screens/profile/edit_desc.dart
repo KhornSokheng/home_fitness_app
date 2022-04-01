@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:home_fitness/models/userdataprofile.dart';
-import 'package:home_fitness/widgets/appbar_widget.dart';
+import 'package:home_fitness/screens/profile/widgets/appbar_widget.dart';
 
 // This class handles the Page to edit the About Me Section of the User Profile.
 class EditDescriptionFormPage extends StatefulWidget {

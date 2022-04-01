@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:home_fitness/models/user.dart';
 import 'package:home_fitness/providers/user_provider.dart';
-import 'package:home_fitness/screens/menu/launcher.dart';
+import 'package:home_fitness/screens/bottom_menu_bar/launcher.dart';
 
 import 'package:in_app_purchases_paywall_ui/in_app_purchases_paywall_ui.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
