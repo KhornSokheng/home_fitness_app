@@ -77,7 +77,9 @@ class _WorkoutState extends State<Workout> {
               DateTime now = DateTime.now();
               selectedWorkoutList= all_videos
                   .where((video) =>
-              video.releaseDate!.difference(now) < Duration(days: 3))
+              // change to 7 days with absolute value
+              //the previous code not works
+              video.releaseDate!.difference(now).inDays.abs() < 7)
                   .toList();
             }else{
               selectedWorkoutList = all_videos;
