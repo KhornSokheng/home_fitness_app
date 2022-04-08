@@ -1,11 +1,15 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:home_fitness/providers/user_provider.dart';
 import 'package:path/path.dart';
 
 import 'package:home_fitness/screens/profile/widgets/appbar_widget.dart';
 import 'package:home_fitness/models/userdataprofile.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
+
+import '../../models/user.dart';
 
 class EditImagePage extends StatefulWidget {
   const EditImagePage({Key? key}) : super(key: key);
@@ -17,8 +21,12 @@ class EditImagePage extends StatefulWidget {
 class _EditImagePageState extends State<EditImagePage> {
   var user = UserDataProfile.myUser;
 
+
   @override
   Widget build(BuildContext context) {
+
+    User cur_user = Provider.of<UserProvider>(context).user;
+
     return Scaffold(
       appBar: buildAppBar(context),
       body: Column(
@@ -53,7 +61,7 @@ class _EditImagePageState extends State<EditImagePage> {
                       setState(
                           () => user = user.copy(imagePath: newImage.path));
                     },
-                    child: Image.network(user.image),
+                    child: Image.network(cur_user.profile_img_url),
                   ))),
           Padding(
               padding: EdgeInsets.only(top: 40),

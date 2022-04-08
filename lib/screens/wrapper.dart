@@ -4,16 +4,8 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:home_fitness/screens/sign_up/get_info.dart';
-import 'package:home_fitness/screens/sign_up/sign_up.dart';
-import 'package:home_fitness/screens/achievement/achievement.dart';
-import 'package:home_fitness/screens/admin/admin_report.dart';
-import 'package:home_fitness/screens/home/home.dart';
-import 'package:home_fitness/screens/login/login.dart';
-import 'package:home_fitness/screens/notification/notification.dart';
-import 'package:provider/provider.dart';
 
-import '../providers/user_provider.dart';
+import 'package:home_fitness/screens/login/login.dart';
 import 'package:home_fitness/models/user.dart' as fitness_user;
 
 import 'bottom_menu_bar/launcher.dart';

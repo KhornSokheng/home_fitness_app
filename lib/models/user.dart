@@ -39,7 +39,7 @@ class User {
     this.height = 175,
     this.weight = 75,
     this.dateOfBirth,
-    this.calories_burn = 1100,
+    this.calories_burn = 0,
     this.heartRate = 95,
     this.step = 1980,
     this.distance_walk = 2,
