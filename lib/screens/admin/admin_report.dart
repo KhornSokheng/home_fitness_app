@@ -41,15 +41,15 @@ class _AdminReportState extends State<AdminReport> {
       Activity(
           name: 'Users',
           unit: 'users',
-          value: '98,500',
+          value: '35',
           image_url: 'assets/admin_report.png'),
       Activity(
-        name: 'Profit', unit: '\$', value: '89,099',
+        name: 'Profit', unit: '\$', value: '89',
         image_url: 'assets/admin_report.png',
         // reached: false
       ),
       Activity(
-        name: 'Expenses', unit: '\$', value: '525',
+        name: 'Expenses', unit: '\$', value: '52',
         image_url: 'assets/admin_report.png',
         // reached: false
       ),

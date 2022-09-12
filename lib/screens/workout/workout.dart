@@ -104,24 +104,29 @@ class _WorkoutState extends State<Workout> {
 
   Widget buildWorkouts(BuildContext context,List<Video> selectedWorkoutList) {
 
-
+    double width = MediaQuery. of(context). size. width ;
 
     return GestureDetector(
       onHorizontalDragEnd: swipeFunction,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: selectedWorkoutList
-              // .where((video) => video.type == getCategoryName(selectedType))
-              .map(
-                (video) =>
-                Container(
-                    margin: const EdgeInsets.symmetric(vertical: 10),
-                    child: VideoCard(video: video, selectedWorkoutList: selectedWorkoutList)
+      child: Container(
+        width: width*0.8,
+        // color: Colors.amberAccent,
 
-                ),
-          )
-              .toList(),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: selectedWorkoutList
+                // .where((video) => video.type == getCategoryName(selectedType))
+                .map(
+                  (video) =>
+                  Container(
+                      margin: const EdgeInsets.symmetric(vertical: 10),
+                      child: VideoCard(video: video, selectedWorkoutList: selectedWorkoutList)
+
+                  ),
+            )
+                .toList(),
+          ),
         ),
       ),
     );

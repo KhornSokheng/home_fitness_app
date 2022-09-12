@@ -58,7 +58,7 @@ class _LauncherState extends State<Launcher> {
       size: 30,
     ),
     Badge(
-        badgeContent: Text('3'),
+        badgeContent: Text('1'),
         child: Icon(
           Icons.notifications_none_outlined,
           size: 30,
