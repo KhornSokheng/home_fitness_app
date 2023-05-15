@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:home_fitness/models/video.dart';
-import 'package:grouped_list/grouped_list.dart';
 import 'package:home_fitness/providers/user_provider.dart';
 import 'package:home_fitness/providers/video_provider.dart';
 import 'package:home_fitness/screens/workout/video_card.dart';

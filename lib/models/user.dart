@@ -26,30 +26,29 @@ class User {
   List<String> interest;
   String level;
 
-  User({
-    required this.id,
-    required this.username,
-    required this.email,
-    // required this.last_name,
-    this.password = 'password',
-    this.gender = 'Male',
-    this.role = 'normal_user',
-    this.phoneNum = '0932059099',
-    this.user_type = 'normal',
-    this.height = 175,
-    this.weight = 75,
-    this.dateOfBirth,
-    this.calories_burn = 0,
-    this.heartRate = 95,
-    this.step = 1980,
-    this.distance_walk = 2,
-    this.profile_img_url =
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4Y2LJnaCmGkiNXrQ9BDNoWPljvdLT1308iw&usqp=CAU',
-    required this.interest,
-    this.level = 'Beginner',
-    this.minute_play = 0,
-    this.num_workout = 0
-  });
+  User(
+      {required this.id,
+      required this.username,
+      required this.email,
+      // required this.last_name,
+      this.password = 'password',
+      this.gender = 'Male',
+      this.role = 'normal_user',
+      this.phoneNum = '0932059099',
+      this.user_type = 'normal',
+      this.height = 175.0,
+      this.weight = 75.0,
+      this.dateOfBirth,
+      this.calories_burn = 0,
+      this.heartRate = 95,
+      this.step = 1980,
+      this.distance_walk = 2,
+      this.profile_img_url =
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4Y2LJnaCmGkiNXrQ9BDNoWPljvdLT1308iw&usqp=CAU',
+      required this.interest,
+      this.level = 'Beginner',
+      this.minute_play = 0,
+      this.num_workout = 0});
 
   // to json method
   Map<String, dynamic> toJson() {
@@ -70,36 +69,34 @@ class User {
       'level': level,
       'calories_burn': calories_burn,
       'step': step,
-      'distance_walk': distance_walk,
+      'distance_walk': distance_walk as double,
       'num_workout': num_workout,
       'minute_play': minute_play
-
     };
   }
 
   //convert from json obj to User
   static User fromJson(Map<String, dynamic> json) => User(
-        id: json['id'],
-        username: json['username'],
-        email: json['email'],
-        // password: json['password'],
-        gender: json['gender'],
-        role: json['role'],
-        phoneNum: json['phoneNum'],
-        user_type: json['user_type'],
-        height: json['height'],
-        weight: json['weight'],
-        dateOfBirth:(json['dateOfBirth'] as Timestamp).toDate(),
-        profile_img_url: json['profile_img_url'],
-        interest: json['interest'].cast<String>(),
-        // interest: ['Yoga'],
-        level: json['level'],
-        calories_burn: json['calories_burn'],
-        step: json['step'],
-        distance_walk: json['distance_walk'],
+      id: json['id'],
+      username: json['username'],
+      email: json['email'],
+      // password: json['password'],
+      gender: json['gender'],
+      role: json['role'],
+      phoneNum: json['phoneNum'],
+      user_type: json['user_type'],
+      height: json['height'].toDouble(),
+      weight: json['weight'].toDouble(),
+      dateOfBirth: (json['dateOfBirth'] as Timestamp).toDate(),
+      profile_img_url: json['profile_img_url'],
+      interest: json['interest'].cast<String>(),
+      // interest: ['Yoga'],
+      level: json['level'],
+      calories_burn: json['calories_burn'],
+      step: json['step'],
+      distance_walk: json['distance_walk'].toDouble(),
       num_workout: json['num_workout'],
-      minute_play: json['minute_play']
-      );
+      minute_play: json['minute_play']);
 
   String getVieoLevel() {
     if (this.level == 'Beginner')
@@ -135,7 +132,5 @@ class User {
 
   void logout() {}
 
-  Future<void> getUser() async {
-
-  }
+  Future<void> getUser() async {}
 }

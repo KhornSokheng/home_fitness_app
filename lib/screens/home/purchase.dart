@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:home_fitness/models/user.dart';
 import 'package:home_fitness/providers/user_provider.dart';
@@ -29,7 +28,7 @@ class _PurchaseState extends State<Purchase> {
     return Center(
       child: PaywallScaffold(
         // set a theme
-        theme: Theme.of(context),
+        // theme: Theme.of(context),
         // appBarTitle for scaffold
         appBarTitle: "Home Fitness Premium",
         child: MoritzPaywall(
@@ -149,7 +148,7 @@ class _PurchaseState extends State<Purchase> {
                 TextAndUrl("Privacy Policy", "https://www.linkfive.io/privacy"),
             // add a custom campaign widget
             campaignWidget: CampaignBanner(
-              theme: Theme.of(context),
+              // theme: Theme.of(context),
               headline: "🥳 Summer Special Sale",
               subContent: Container(
                   padding: EdgeInsets.all(8),

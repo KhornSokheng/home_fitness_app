@@ -6,8 +6,6 @@ import 'package:home_fitness/models/userprofile.dart';
 import 'package:home_fitness/models/userdataprofile.dart';
 import 'package:home_fitness/providers/google_sign_in.dart';
 import 'package:home_fitness/providers/user_provider.dart';
-import 'package:home_fitness/screens/profile/edit_password.dart';
-import 'package:home_fitness/screens/profile/widgets/appbar_widget.dart';
 
 import 'package:home_fitness/screens/profile/edit_desc.dart';
 import 'package:home_fitness/screens/profile/edit_name.dart';
@@ -60,11 +58,11 @@ class _ProfileState extends State<Profile> {
             child: Container(
               margin: EdgeInsets.fromLTRB(5, 5, 20, 5),
               child: ElevatedButton.icon(
-                onPressed: () {
+                onPressed: () async {
                   user.logout();
                   final googleUserProvider =
                       Provider.of<GoogleSignInProvider>(context, listen: false);
-                  googleUserProvider.logout();
+                  await googleUserProvider.logout();
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(Colors.red),

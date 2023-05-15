@@ -4,7 +4,6 @@ import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:home_fitness/api/firebase_storage_api.dart';
 // import 'package:home_fitness/models/event.dart';
@@ -23,7 +22,8 @@ class GetInfo extends StatefulWidget {
   late String email;
   // late String password;
 
-  GetInfo({required this.email,
+  GetInfo({
+    required this.email,
     // required this.password
   });
 
@@ -35,7 +35,7 @@ class _GetInfoState extends State<GetInfo> {
   late BuildContext myBuildContext;
   DateTime releaseDate = DateTime.now();
 
-  TimeOfDay time = TimeOfDay(hour: 17, minute: 00);
+  TimeOfDay time = const TimeOfDay(hour: 17, minute: 00);
 
   final formKey = GlobalKey<FormState>(); //key to validate form
 
@@ -107,13 +107,13 @@ class _GetInfoState extends State<GetInfo> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tell Us More About You'),
+        title: const Text('Tell Us More About You'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Center(
           child: Container(
-              padding: EdgeInsets.only(top: 50),
+              padding: const EdgeInsets.only(top: 50),
               width: 500,
               // height: 500,
               child: Form(
@@ -128,8 +128,8 @@ class _GetInfoState extends State<GetInfo> {
                     Text(imageName!),
                     ElevatedButton.icon(
                       onPressed: selectImage,
-                      icon: Icon(Icons.image_outlined),
-                      label: Text('Upload Profile Image'),
+                      icon: const Icon(Icons.image_outlined),
+                      label: const Text('Upload Profile Image'),
                     ),
                     imageTask != null
                         ? buildUploadStatus(imageTask!)
@@ -143,7 +143,7 @@ class _GetInfoState extends State<GetInfo> {
                           return null; // the form is valid
                         }
                       },
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           contentPadding: EdgeInsets.all(10),
                           hintText: 'EX: John Cena',
                           labelText: 'Username'),
@@ -166,7 +166,7 @@ class _GetInfoState extends State<GetInfo> {
                           return null; // the form is valid
                         }
                       },
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           contentPadding: EdgeInsets.all(10),
                           hintText: '0662344567',
                           labelText: 'Phone Number'),
@@ -177,16 +177,16 @@ class _GetInfoState extends State<GetInfo> {
 
                     // select gender
                     Container(
-                      margin: EdgeInsets.symmetric(vertical: 15),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                      margin: const EdgeInsets.symmetric(vertical: 15),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 4),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(color: Colors.black, width: 0.5),
                       ),
                       child: DropdownButtonHideUnderline(
                         child: DropdownButton<String>(
-                            hint: Text('Gender'),
+                            hint: const Text('Gender'),
                             value: gender,
                             isExpanded: true,
                             items: genderItems.map(buildTypeItem).toList(),
@@ -200,22 +200,22 @@ class _GetInfoState extends State<GetInfo> {
 
                     // select interest
                     Container(
-                      margin: EdgeInsets.symmetric(vertical: 15),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                      margin: const EdgeInsets.symmetric(vertical: 15),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 4),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(color: Colors.black, width: 0.5),
                       ),
                       child: DropdownButtonHideUnderline(
                         child: DropdownButton<String>(
-                            hint: Text('You interested in'),
+                            hint: const Text('You interested in'),
                             value: interest[0],
                             isExpanded: true,
                             items: typeItems.map(buildTypeItem).toList(),
                             onChanged: (value) {
                               return setState(() {
-                                this.interest.add(value!);
+                                interest.add(value!);
                                 print(interest);
                               });
                             }),
@@ -224,16 +224,16 @@ class _GetInfoState extends State<GetInfo> {
 
                     // select level
                     Container(
-                      margin: EdgeInsets.symmetric(vertical: 5),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                      margin: const EdgeInsets.symmetric(vertical: 5),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 4),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(color: Colors.black, width: 0.5),
                       ),
                       child: DropdownButtonHideUnderline(
                         child: DropdownButton<String>(
-                            hint: Text('You are a '),
+                            hint: const Text('You are a '),
                             value: level,
                             isExpanded: true,
                             items: levelItems.map(buildTypeItem).toList(),
@@ -248,7 +248,7 @@ class _GetInfoState extends State<GetInfo> {
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text('Height(cm):'),
+                        const Text('Height(cm):'),
                         Expanded(
                           child: Slider(
                             value: height,
@@ -271,7 +271,7 @@ class _GetInfoState extends State<GetInfo> {
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text('Weight(kg):'),
+                        const Text('Weight(kg):'),
                         Expanded(
                           child: Slider(
                             value: weight,
@@ -291,14 +291,14 @@ class _GetInfoState extends State<GetInfo> {
                       ],
                     ),
 
-                    SizedBox(
+                    const SizedBox(
                       height: 25,
                     ),
                     //choose date of birth
                     Row(
                       children: [
                         ElevatedButton(
-                          child: Text(
+                          child: const Text(
                             'Date of Birth:',
                           ),
                           onPressed: () async {
@@ -323,16 +323,16 @@ class _GetInfoState extends State<GetInfo> {
                             });
                           },
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 20,
                         ),
                         Text(
                           DateFormat.yMMMEd().format(birthday),
-                          style: TextStyle(color: Colors.blueAccent),
+                          style: const TextStyle(color: Colors.blueAccent),
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
 
@@ -352,8 +352,6 @@ class _GetInfoState extends State<GetInfo> {
       User user = User(
         username: usernameController.text,
         email: widget.email,
-        // password: widget.password, // password should not keep in user, bc it handles by authenticaton alr
-        // id: 'ID', // id will change later when referenced to the database
         id: widget.email, // use the email as the id of the document
         interest: interest,
         dateOfBirth: birthday,
@@ -361,14 +359,15 @@ class _GetInfoState extends State<GetInfo> {
         phoneNum: phoneController.text,
         height: height,
         weight: weight,
-        profile_img_url: imageUrlDownload!,
+        profile_img_url: imageUrlDownload ?? "https://firebasestorage.googleapis.com/v0/b/home-fitness-d9553.appspot.com/o/images%2FyL28UxR5TnrIA.jpg?alt=media&token=29e995f9-f59f-4dcb-b64e-91b1b85cf8b5",
         level: level!,
       );
 
-      try{
+      try {
         // insert new user to the document
         /// Reference to user document
-        final docUser = FirebaseFirestore.instance.collection('users').doc(user.id) ;
+        final docUser =
+            FirebaseFirestore.instance.collection('users').doc(user.id);
 
         // user.id = docUser.id;
 
@@ -377,26 +376,22 @@ class _GetInfoState extends State<GetInfo> {
 
         // TODO
         // update user provider
-        Provider.of<UserProvider>(myBuildContext, listen: false).updateUser(user);
+        Provider.of<UserProvider>(myBuildContext, listen: false)
+            .updateUser(user);
 
-        Navigator.push(myBuildContext,
-            MaterialPageRoute(builder: (context) {
-              return Launcher(
-                docId: user.id,
-
-              );
-            }));
-
-      }on FirebaseException catch(e){
+        Navigator.push(myBuildContext, MaterialPageRoute(builder: (context) {
+          return Launcher(
+            docId: user.id,
+          );
+        }));
+      } on FirebaseException catch (e) {
         print(e.message);
 
         // display error message when sth when wrong
         Utils.showSnackBar(e.message);
       }
-
     }
   }
-
 
   DropdownMenuItem<String> buildTypeItem(String item) => DropdownMenuItem(
         value: item,
@@ -448,7 +443,7 @@ class _GetInfoState extends State<GetInfo> {
 
             return Text(
               '$percentage %',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
                 color: Colors.blueAccent,

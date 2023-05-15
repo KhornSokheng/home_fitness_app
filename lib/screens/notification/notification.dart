@@ -1,4 +1,4 @@
-import 'package:badges/badges.dart';
+import 'package:badges/badges.dart' as badge;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:home_fitness/models/event.dart';
@@ -35,7 +35,7 @@ class _NotificationsState extends State<Notifications> {
           // future???
           final Event? newEvent = await showDialog<Event>(
             context: context,
-            builder: (BuildContext context) => AddEvent(),
+            builder: (BuildContext context) => const AddEvent(),
           );
           if (newEvent == null || newEvent.name.isEmpty || newEvent.date == null) return;
 
@@ -57,7 +57,7 @@ class _NotificationsState extends State<Notifications> {
           });
         },
         tooltip: 'Add New Reminder',
-        child: Icon(Icons.add_alarm_outlined),
+        child: const Icon(Icons.add_alarm_outlined),
         backgroundColor: Colors.orange,
         splashColor: Colors.orange.shade800,
 
@@ -65,28 +65,28 @@ class _NotificationsState extends State<Notifications> {
       floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
       backgroundColor: Colors.grey,
       appBar: AppBar(
-        title: Text("Notifications"),
+        title: const Text("Notifications"),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(5),
+        padding: const EdgeInsets.all(5),
         // reverse: true,
 
         child: Container(
-          margin: EdgeInsets.fromLTRB(10, 10, 10, 50),
+          margin: const EdgeInsets.fromLTRB(10, 10, 10, 50),
           child: Column(
             // children: quotes.map((quote) {
             //   return Text(quote);
             // }).toList(),
             children: events.reversed.map((event) => Stack(
-              children: [Badge(
+              children: [badge.Badge(
 
-                padding: EdgeInsets.all(10),
-                badgeColor: Colors.redAccent,
+                // padding: const EdgeInsets.all(10),
+                // badgeColor: Colors.redAccent,
                 // shape: BadgeShape.square,
-                position: BadgePosition.topStart(),
+                position: badge.BadgePosition.topStart(),
                 showBadge: event.status=='new' ? true:false,
-                badgeContent: Text(
+                badgeContent: const Text(
                   'New',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,

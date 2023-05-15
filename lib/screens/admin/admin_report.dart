@@ -2,12 +2,10 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:home_fitness/models/activity.dart';
-import 'package:home_fitness/models/milestone.dart';
 import 'package:home_fitness/models/user.dart';
 import 'package:home_fitness/models/video.dart';
 import 'package:home_fitness/providers/user_provider.dart';
 import 'package:home_fitness/screens/achievement/activity_card.dart';
-import 'package:home_fitness/screens/achievement/milestone_card.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/video_provider.dart';

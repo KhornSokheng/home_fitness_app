@@ -15,12 +15,14 @@ class Wrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return const Launcher();
-    return LoginOrMenu();
+    return const LoginOrMenu();
   }
 }
 
 class LoginOrMenu extends StatelessWidget {
+  const LoginOrMenu({Key? key}) : super(key: key);
+
+  @override
   Widget build(BuildContext context) {
     late fitness_user.User userInDB;
     var my_snapshot;
@@ -54,82 +56,18 @@ class LoginOrMenu extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot)  {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasData) {
             final googleUser = FirebaseAuth.instance.currentUser!;
             print(googleUser);
 
-            // TODO
-            // when database created,
-            //need to fetch data from the database before setup to local provider
-
-
-            // readUserDB(googleUser.email!);
-            // Future.delayed(Duration(seconds: 60));
-            //
-            // if (userInDB.email == null) {
-            //   return GetInfo(email: googleUser.email!);
-            // } else {
-            //
-            //   Provider.of<UserProvider>(context, listen: false)
-            //       .updateUser(userInDB);
-            //   return Launcher();
-            // }
-
-            return Launcher( docId: googleUser.email!);
+            return Launcher( docId: googleUser.email ?? 'test1@gmail.com');
 
           } else if (snapshot.hasError) {
-            return Center(child: Text('Something Went Wrong!'));
+            return const Center(child: Text('Something Went Wrong!'));
           } else {
             return LogIn();
           }
-
-          // return Center(
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.center,
-          //     children: [
-          //       ElevatedButton(
-          //           onPressed: () {
-          //             Navigator.push(context,
-          //                 MaterialPageRoute(builder: (BuildContext context) {
-          //               return LogIn();
-          //             }));
-          //           },
-          //           child: Text('Login Test')),
-          //       SizedBox(
-          //         width: 100,
-          //       ),
-          //       ElevatedButton(
-          //           onPressed: () {
-          //             // MaterialPageRoute(builder: (BuildContext context) {
-          //             //   return Launcher();
-          //             // });
-          //             Navigator.push(context,
-          //                 MaterialPageRoute(builder: (BuildContext context) {
-          //               return Launcher();
-          //             }));
-          //           },
-          //           child: Text('Go to Menu')),
-          //       SizedBox(
-          //         width: 100,
-          //       ),
-          //       ElevatedButton(
-          //           onPressed: () {
-          //             // MaterialPageRoute(builder: (BuildContext context) {
-          //             //   return Launcher();
-          //             // });
-          //             Navigator.push(context,
-          //                 MaterialPageRoute(builder: (BuildContext context) {
-          //               return GetInfo(
-          //                 email: 'exam@go.com',
-          //                 // password: '123456',
-          //               );
-          //             }));
-          //           },
-          //           child: Text('Get Info'))
-          //     ],
-          //   ),
-          // );
         });
   }
 }

@@ -1,17 +1,11 @@
-import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:home_fitness/api/firebase_storage_api.dart';
-import 'package:home_fitness/models/event.dart';
 import 'package:home_fitness/models/video.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:path/path.dart';
 
 class AddVideo extends StatefulWidget {
   const AddVideo({Key? key}) : super(key: key);
